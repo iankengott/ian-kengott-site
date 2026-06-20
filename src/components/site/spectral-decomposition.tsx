@@ -3,8 +3,9 @@
 import * as React from "react";
 
 /**
- * SpectralDecomposition — a canvas-based mini-visualization of the MANTiS
- * PCA/SVD workflow. Animates three panels in lockstep:
+ * SpectralDecomposition — a canvas-based sketch of the MANTiS PCA/SVD
+ * workflow. It illustrates the sequence without claiming to be a live
+ * analysis run or a real exported dataset. Animates three panels in lockstep:
  *
  *  1. Hyperspectral image stack (left)   — a grid of "spectral pixels" whose
  *     hue is driven by a low-rank reconstruction that gains rank over time.
@@ -92,20 +93,20 @@ export function SpectralDecomposition() {
     <div
       ref={wrapRef}
       className="spectral-viz relative aspect-[16/9] w-full overflow-hidden rounded-lg border border-border/60 bg-background/60"
-      aria-label="Animated visualization of MANTiS PCA spectral decomposition"
+      aria-label="Illustrative visualization of a MANTiS PCA spectral decomposition workflow"
       role="img"
     >
       <canvas ref={canvasRef} className="block h-full w-full" />
       <div className="spectral-viz-overlay pointer-events-none absolute inset-0 flex flex-col justify-between p-3">
         <div className="flex items-center justify-between">
-          <span className="sv-label">MANTiS · PCA decomposition</span>
+          <span className="sv-label">MANTiS · PCA/SVD workflow sketch</span>
           <span className="sv-status">
-            <span className="sv-status-dot" /> live render
+            <span className="sv-status-dot" /> procedural render
           </span>
         </div>
         <div className="flex items-center justify-between">
           <span className="sv-label">hyperspectral stack → components</span>
-          <span className="sv-label sv-label-mono">rank = 3</span>
+          <span className="sv-label sv-label-mono">rank sketch = 3</span>
         </div>
       </div>
     </div>

@@ -264,10 +264,11 @@ function MantisFeature() {
           Scientific tooling, packaging, and analysis workflows
         </h3>
         <p className="leading-relaxed text-muted-foreground">
-          This repository started from my Nix package for MANTiS, a multivariate
-          x-ray spectromicroscopy analysis tool. My spectroscopy notes cover the
-          MANTiS workflow: loading hyperspectral data, preprocessing, PCA/SVD,
-          clustering, spectral maps, NNMA, peak fitting, and tomography context.
+          My MANTiS work centers on packaging and workflow notes for a
+          multivariate x-ray spectromicroscopy analysis tool. My spectroscopy
+          notes cover the MANTiS workflow: loading hyperspectral data,
+          preprocessing, PCA/SVD, clustering, spectral maps, NNMA, peak fitting,
+          and tomography context.
         </p>
         <div className="flex flex-wrap gap-x-5 gap-y-2">
           <a
@@ -303,11 +304,11 @@ function MantisFeature() {
             "Use PCA/SVD, clustering, NNMA, maps, and peak fitting.",
           ]}
         />
-        {/* Live PCA decomposition visualization */}
+        {/* Procedural PCA/SVD sketch; screenshots beside it are the real MANTiS UI references. */}
         <div className="mt-4">
           <p className="mb-2 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground/80">
             <span className="h-1 w-1 rounded-full bg-[var(--copper)]" />
-            live · rank-3 reconstruction
+            procedural · PCA/SVD workflow sketch
           </p>
           <SpectralDecomposition />
         </div>
@@ -362,6 +363,9 @@ function MantisFeature() {
             );
           })}
         </div>
+        <p className="mt-3 text-center font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground/70">
+          Screenshots reference public MANTiS documentation; the canvas is illustrative.
+        </p>
       </div>
     </Reveal>
   );

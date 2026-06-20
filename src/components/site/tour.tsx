@@ -51,7 +51,7 @@ const STEP_NOTES: Record<string, { tip: string; tryHint?: string }> = {
     tip: "The operating rules: build, verify, simplify.",
   },
   connect: {
-    tip: "Reach out — messages stay on this server and I read every one.",
+    tip: "Public links for GitHub, the research session index, and the USF lab page.",
   },
 };
 

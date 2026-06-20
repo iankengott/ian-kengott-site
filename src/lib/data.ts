@@ -379,7 +379,7 @@ export const SEARCH_ITEMS: SearchItem[] = [
   { id: "sec-journey", label: "Journey", hint: "Timeline", group: "Sections", keywords: ["timeline", "history", "path", "now"], action: "scroll", target: "#journey" },
   { id: "sec-principles", label: "Principles", hint: "Build, verify, simplify", group: "Sections", keywords: ["principles", "rules", "philosophy"], action: "scroll", target: "#principles" },
   { id: "sec-notes", label: "Field Notes", hint: "Reading & research notes", group: "Sections", keywords: ["notes", "reading", "pca", "svd", "ferrimagnet", "nix", "flake", "muon"], action: "scroll", target: "#notes" },
-  { id: "sec-connect", label: "Connect", hint: "Contact form", group: "Sections", keywords: ["contact", "email", "message", "reach"], action: "scroll", target: "#connect" },
+  { id: "sec-connect", label: "Connect", hint: "Public links", group: "Sections", keywords: ["contact", "email", "message", "reach", "github"], action: "scroll", target: "#connect" },
   // Lenses
   { id: "lens-magnonics", label: "Focus: Magnonics", hint: "Spin dynamics", group: "Research focus", keywords: ["magnonics", "spin", "dynamics", "nanomagnetism", "spectroscopy"], action: "scroll", target: "#research" },
   { id: "lens-muon", label: "Focus: Muon Telescope", hint: "Detector thread", group: "Research focus", keywords: ["muon", "telescope", "detector", "cosmic"], action: "scroll", target: "#research" },

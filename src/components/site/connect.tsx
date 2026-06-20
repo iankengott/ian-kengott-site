@@ -24,8 +24,7 @@ export function Connect() {
             <p className="mt-4 max-w-md leading-relaxed text-muted-foreground">
               I am glad to talk research tooling, reproducible environments,
               spectromicroscopy workflows, or interesting infrastructure. This
-              site is static, so I keep contact links explicit instead of
-              pretending there is a server-side inbox.
+              site is static, so the clearest public routes are linked directly.
             </p>
 
             <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/40 px-3 py-1.5">
