@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { useInView, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   Gauge,
   Wrench,
@@ -16,7 +15,6 @@ import {
 import { EXPERTISE, TOOLING } from "@/lib/data";
 import { Reveal } from "./reveal";
 import { SectionHeading } from "./section-heading";
-import { GitHubHeatmap } from "./github-heatmap";
 
 const ICONS: Record<string, LucideIcon> = {
   ScanLine,
@@ -43,11 +41,12 @@ export function Expertise() {
               Expertise
             </p>
             <SectionHeading id="expertise" className="font-display text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
-              Where the hours went.
+              Working strengths.
             </SectionHeading>
             <p className="mt-4 max-w-md leading-relaxed text-muted-foreground">
-              Honest self-assessment across the domains this site draws on. High
-              where the reps are real, modest where the work is still maturing.
+              A qualitative map of the domains I keep returning to: lab support,
+              research tooling, reproducible environments, and the systems work
+              underneath them.
             </p>
 
             <div className="mt-8">
@@ -72,14 +71,14 @@ export function Expertise() {
             </div>
           </Reveal>
 
-          {/* Right: proficiency bars */}
+          {/* Right: qualitative strengths */}
           <Reveal delay={0.08}>
             <div className="flex flex-col gap-5">
               {EXPERTISE.map((skill, i) => (
                 <SkillBar
                   key={skill.label}
                   label={skill.label}
-                  level={skill.level}
+                  depth={skill.depth}
                   note={skill.note}
                   icon={skill.icon}
                   index={i}
@@ -88,11 +87,6 @@ export function Expertise() {
             </div>
           </Reveal>
         </div>
-
-        {/* Live GitHub contribution heatmap — spans full width below */}
-        <Reveal delay={0.12} className="mt-14">
-          <GitHubHeatmap />
-        </Reveal>
       </div>
     </section>
   );
@@ -100,23 +94,27 @@ export function Expertise() {
 
 function SkillBar({
   label,
-  level,
+  depth,
   note,
   icon,
   index,
 }: {
   label: string;
-  level: number;
+  depth: string;
   note: string;
   icon: string;
   index: number;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-40px" });
   const Icon = ICONS[icon] ?? Gauge;
 
   return (
-    <div ref={ref} className="group">
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.45, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
+      className="group"
+    >
       <div className="mb-1.5 flex items-center gap-3">
         <span className="expertise-icon" aria-hidden>
           <Icon className="h-3.5 w-3.5" />
@@ -125,27 +123,14 @@ function SkillBar({
           <span className="font-display text-base font-medium tracking-tight">
             {label}
           </span>
-          <span className="mono-accent text-sm font-semibold tabular-nums">
-            {inView ? level : 0}
-            <span className="text-muted-foreground/60">%</span>
+          <span className="mono-accent rounded-full border border-[var(--copper)]/25 bg-[var(--copper)]/5 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em]">
+            {depth}
           </span>
         </div>
       </div>
       <div className="pl-[2.5rem]">
-        <div className="skill-bar-track">
-          <motion.div
-            initial={{ width: 0 }}
-            animate={inView ? { width: `${level}%` } : { width: 0 }}
-            transition={{
-              duration: 1.1,
-              delay: 0.15 + index * 0.08,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="skill-bar-fill"
-          />
-        </div>
         <p className="mt-1.5 font-mono text-[11px] text-muted-foreground">{note}</p>
       </div>
-    </div>
+    </motion.div>
   );
 }

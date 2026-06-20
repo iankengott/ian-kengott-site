@@ -100,11 +100,6 @@ export function Timeline() {
                       <p className="mt-1 max-w-2xl leading-relaxed text-muted-foreground">
                         {item.body}
                       </p>
-                      {/* metric chip — quantified outcome line */}
-                      <span className="tl-metric mt-2 inline-flex items-center gap-1.5 rounded-md border border-[var(--copper)]/25 bg-[var(--copper)]/5 px-2.5 py-1 font-mono text-[11px] text-[var(--copper)]/90">
-                        <span className="h-1 w-1 rounded-full bg-[var(--copper)]" aria-hidden />
-                        {item.metric}
-                      </span>
                     </div>
                   </div>
                 </motion.li>

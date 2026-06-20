@@ -121,17 +121,16 @@ export const SYSTEMS = [
 ] as const;
 
 /**
- * Expertise — proficiency bars across the domains this site covers.
- * Levels are self-assessed and intentionally honest (nothing maxed out).
+ * Expertise — qualitative strengths across the domains this site covers.
  * `icon` maps to a lucide-react icon name rendered by expertise.tsx.
  */
 export const EXPERTISE = [
-  { label: "X-ray spectromicroscopy", level: 78, note: "MANTiS · PCA/SVD · NNMA", icon: "ScanLine" },
-  { label: "Magnonics & spin dynamics", level: 62, note: "Arena lab context", icon: "Waves" },
-  { label: "Nix & reproducible packaging", level: 85, note: "flakes · dev shells", icon: "Package" },
-  { label: "Research automation", level: 70, note: "agents · retrieval", icon: "Bot" },
-  { label: "Self-hosted infrastructure", level: 74, note: "Hermes · Honcho", icon: "Server" },
-  { label: "Scientific Python", level: 82, note: "numpy · scipy · plotting", icon: "Braces" },
+  { label: "X-ray spectromicroscopy", depth: "active", note: "MANTiS · PCA/SVD · NNMA", icon: "ScanLine" },
+  { label: "Magnonics & spin dynamics", depth: "developing", note: "Arena lab context", icon: "Waves" },
+  { label: "Nix & reproducible packaging", depth: "strong", note: "flakes · dev shells", icon: "Package" },
+  { label: "Research automation", depth: "active", note: "agents · retrieval", icon: "Bot" },
+  { label: "Self-hosted infrastructure", depth: "active", note: "Hermes · Honcho", icon: "Server" },
+  { label: "Scientific Python", depth: "strong", note: "numpy · scipy · plotting", icon: "Braces" },
 ] as const;
 
 export const TOOLING = [
@@ -203,7 +202,6 @@ export const TIMELINE = [
     body: "Maintaining a Nix package for MANTiS and documenting the full hyperspectral workflow: load, preprocess, PCA/SVD, cluster, map, NNMA, peak fit.",
     tag: "Tooling",
     status: "now",
-    metric: "1 flake · 7-step workflow",
   },
   {
     year: "Active",
@@ -211,7 +209,6 @@ export const TIMELINE = [
     body: "Working within Dr. Arena's Magnetic Materials & Spin Dynamics lab context — magnonics direction and a muon telescope thread.",
     tag: "Research",
     status: "active",
-    metric: "2 threads · magnonics + muon",
   },
   {
     year: "Ongoing",
@@ -219,7 +216,6 @@ export const TIMELINE = [
     body: "Building agents, self-hosted memory (Hermes, Honcho), and retrieval systems to keep long-running research reproducible across sessions.",
     tag: "Infrastructure",
     status: "ongoing",
-    metric: "3 services · Hermes · Honcho · retrieval",
   },
   {
     year: "Earlier",
@@ -227,7 +223,6 @@ export const TIMELINE = [
     body: "yt-dlp GUI, the PEER Discord bot, the Magic mod, and the Arbor fork — small, useful, shipped.",
     tag: "Shipping",
     status: "earlier",
-    metric: "4 public repos shipped",
   },
 ] as const;
 
