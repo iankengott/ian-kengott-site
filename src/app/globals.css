@@ -1,0 +1,1936 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-fraunces);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-copper: var(--copper);
+  --color-copper-foreground: var(--copper-foreground);
+  --color-jade: var(--jade);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/*
+  Scientific Atelier palette
+  - Warm paper / deep ink neutrals (no blue/indigo)
+  - Single signature accent: copper/amber (magnetic, warm, energy)
+  - Subtle jade used only as a cool counterpoint in field viz
+*/
+:root {
+  --radius: 0.75rem;
+  /* surfaces */
+  --background: oklch(0.985 0.008 80);       /* warm paper */
+  --foreground: oklch(0.21 0.012 60);        /* espresso ink */
+  --card: oklch(1 0.006 80);
+  --card-foreground: oklch(0.21 0.012 60);
+  --popover: oklch(1 0.006 80);
+  --popover-foreground: oklch(0.21 0.012 60);
+  --primary: oklch(0.24 0.015 55);
+  --primary-foreground: oklch(0.985 0.008 80);
+  --secondary: oklch(0.96 0.01 75);
+  --secondary-foreground: oklch(0.24 0.015 55);
+  --muted: oklch(0.955 0.01 75);
+  --muted-foreground: oklch(0.5 0.012 65);
+  --accent: oklch(0.95 0.025 70);
+  --accent-foreground: oklch(0.3 0.05 55);
+  --destructive: oklch(0.58 0.2 28);
+  --border: oklch(0.9 0.012 75);
+  --input: oklch(0.9 0.012 75);
+  --ring: oklch(0.62 0.13 55);
+  /* signature accent */
+  --copper: oklch(0.52 0.14 50);              /* copper/amber, darkened for light-mode contrast */
+  --copper-foreground: oklch(0.99 0.008 80);
+  --jade: oklch(0.5 0.08 165);              /* muted sage */
+  /* charts */
+  --chart-1: oklch(0.6 0.13 52);
+  --chart-2: oklch(0.55 0.08 165);
+  --chart-3: oklch(0.5 0.06 70);
+  --chart-4: oklch(0.65 0.1 35);
+  --chart-5: oklch(0.45 0.04 55);
+  /* sidebar */
+  --sidebar: oklch(0.985 0.008 80);
+  --sidebar-foreground: oklch(0.21 0.012 60);
+  --sidebar-primary: oklch(0.24 0.015 55);
+  --sidebar-primary-foreground: oklch(0.985 0.008 80);
+  --sidebar-accent: oklch(0.95 0.025 70);
+  --sidebar-accent-foreground: oklch(0.3 0.05 55);
+  --sidebar-border: oklch(0.9 0.012 75);
+  --sidebar-ring: oklch(0.62 0.13 55);
+
+  /* signatures */
+  --grain-opacity: 0.035;
+  --field-glow: 0.7;
+}
+
+.dark {
+  --background: oklch(0.16 0.008 60);        /* warm night */
+  --foreground: oklch(0.95 0.01 80);
+  --card: oklch(0.2 0.01 60);
+  --card-foreground: oklch(0.95 0.01 80);
+  --popover: oklch(0.2 0.01 60);
+  --popover-foreground: oklch(0.95 0.01 80);
+  --primary: oklch(0.93 0.01 80);
+  --primary-foreground: oklch(0.18 0.01 60);
+  --secondary: oklch(0.25 0.01 60);
+  --secondary-foreground: oklch(0.95 0.01 80);
+  --muted: oklch(0.24 0.01 60);
+  --muted-foreground: oklch(0.68 0.012 70);
+  --accent: oklch(0.28 0.03 55);
+  --accent-foreground: oklch(0.92 0.04 70);
+  --destructive: oklch(0.7 0.19 24);
+  --border: oklch(1 0 0 / 9%);
+  --input: oklch(1 0 0 / 13%);
+  --ring: oklch(0.7 0.13 55);
+  --copper: oklch(0.72 0.14 58);             /* glowing copper */
+  --copper-foreground: oklch(0.16 0.01 60);
+  --jade: oklch(0.68 0.09 165);
+
+  --chart-1: oklch(0.72 0.14 58);
+  --chart-2: oklch(0.68 0.09 165);
+  --chart-3: oklch(0.7 0.08 70);
+  --chart-4: oklch(0.74 0.12 35);
+  --chart-5: oklch(0.6 0.05 55);
+
+  --sidebar: oklch(0.18 0.01 60);
+  --sidebar-foreground: oklch(0.95 0.01 80);
+  --sidebar-primary: oklch(0.93 0.01 80);
+  --sidebar-primary-foreground: oklch(0.18 0.01 60);
+  --sidebar-accent: oklch(0.28 0.03 55);
+  --sidebar-accent-foreground: oklch(0.92 0.04 70);
+  --sidebar-border: oklch(1 0 0 / 9%);
+  --sidebar-ring: oklch(0.7 0.13 55);
+
+  --grain-opacity: 0.05;
+  --field-glow: 1;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "cv01", "cv11";
+  }
+  ::selection {
+    background: color-mix(in oklch, var(--copper) 28%, transparent);
+    color: var(--foreground);
+  }
+}
+
+/* ---------- Display type ---------- */
+.font-display {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-optical-sizing: auto;
+}
+
+/* ---------- Decorative utilities ---------- */
+.eyebrow {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--copper);
+  font-weight: 500;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Hairline divider with copper midpoint */
+.rule-copper {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    color-mix(in oklch, var(--copper) 55%, transparent) 50%,
+    transparent
+  );
+}
+
+/* Glass surface */
+.glass {
+  background: color-mix(in oklch, var(--card) 72%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+
+/* Subtle paper grain overlay */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Copper underline link */
+.link-copper {
+  position: relative;
+  color: var(--foreground);
+  transition: color 0.25s ease;
+}
+.link-copper::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 1px;
+  width: 100%;
+  background: var(--copper);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.link-copper:hover {
+  color: var(--copper);
+}
+.link-copper:hover::after {
+  transform: scaleX(1);
+}
+
+/* Magnetic card hover */
+.card-lift {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease, border-color 0.4s ease;
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in oklch, var(--copper) 40%, var(--border));
+  box-shadow: 0 18px 50px -28px color-mix(in oklch, var(--copper) 60%, transparent);
+}
+
+/* Animated gradient text for the name */
+.name-gradient {
+  background: linear-gradient(
+    100deg,
+    var(--foreground) 0%,
+    var(--foreground) 38%,
+    color-mix(in oklch, var(--copper) 75%, var(--foreground)) 58%,
+    var(--foreground) 82%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: name-shimmer 9s ease-in-out infinite;
+}
+@keyframes name-shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Status pulse */
+.status-pulse {
+  position: relative;
+}
+.status-pulse::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 9999px;
+  background: var(--jade);
+  opacity: 0.5;
+  animation: pulse-ring 2.4s ease-out infinite;
+}
+@keyframes pulse-ring {
+  0% { transform: scale(0.6); opacity: 0.6; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Marquee */
+.marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marquee 32s linear infinite;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Reveal on scroll (used with framer-motion variants mostly; kept for non-motion els) */
+.revealable {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.revealable.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+/* Custom scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklch, var(--copper) 45%, transparent) transparent;
+}
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb {
+  background: color-mix(in oklch, var(--copper) 38%, transparent);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in oklch, var(--copper) 60%, transparent);
+  background-clip: padding-box;
+}
+
+/* Lens swap animation */
+.is-swapping {
+  animation: lens-swap 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes lens-swap {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Section anchor offset for sticky nav */
+section[id] {
+  scroll-margin-top: 88px;
+}
+
+/* Section index numeral (used by SectionLabel) */
+.section-index {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  color: color-mix(in oklch, var(--copper) 70%, var(--muted-foreground));
+}
+
+/* Animated hairline that draws on scroll-into-view */
+.rule-draw {
+  position: relative;
+  height: 1px;
+  background: var(--border);
+  overflow: hidden;
+}
+.rule-draw::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, var(--copper), transparent);
+  animation: rule-sweep 6s ease-in-out infinite;
+}
+@keyframes rule-sweep {
+  0%, 100% { transform: translateX(-60%); }
+  50% { transform: translateX(250%); }
+}
+
+/* Tilt-on-hover for spotlight cards (subtle) */
+.tilt-soft {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-style: preserve-3d;
+}
+.tilt-soft:hover {
+  transform: perspective(900px) rotateX(0.4deg) rotateY(-0.6deg);
+}
+
+/* Floating label chip */
+.chip-glass {
+  background: color-mix(in oklch, var(--card) 60%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+}
+
+/* Selection accent for code-ish mono spans */
+.mono-accent {
+  font-family: var(--font-geist-mono), monospace;
+  color: var(--copper);
+  font-feature-settings: "tnum";
+}
+
+/* Focus ring polish */
+:focus-visible {
+  outline: 2px solid color-mix(in oklch, var(--copper) 70%, transparent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------- Atelier corner ornaments ---------- */
+/* Four small copper L-marks at the corners of a relative container. */
+/* Use: <div class="corner-ornament"> ... </div> */
+.corner-ornament::before,
+.corner-ornament::after {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+  border-color: var(--copper);
+  border-style: solid;
+  border-width: 0;
+  opacity: 0.9;
+  transition: opacity 0.4s ease, width 0.4s ease, height 0.4s ease;
+  z-index: 30;
+}
+.corner-ornament::before {
+  top: 8px;
+  left: 8px;
+  border-top-width: 2px;
+  border-left-width: 2px;
+  border-top-left-radius: 4px;
+}
+.corner-ornament::after {
+  bottom: 8px;
+  right: 8px;
+  border-bottom-width: 2px;
+  border-right-width: 2px;
+  border-bottom-right-radius: 4px;
+}
+.corner-ornament:hover::before,
+.corner-ornament:hover::after,
+.group:hover .corner-ornament::before,
+.group:hover .corner-ornament::after {
+  opacity: 1;
+  width: 30px;
+  height: 30px;
+}
+
+/* Second pair of corners — use a nested .corner-ornament-pair span */
+.corner-ornament-pair span {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+  border-color: var(--copper);
+  border-style: solid;
+  border-width: 0;
+  opacity: 0.9;
+  transition: opacity 0.4s ease, width 0.4s ease, height 0.4s ease;
+  z-index: 30;
+}
+.corner-ornament-pair span:nth-child(1) {
+  top: 8px;
+  right: 8px;
+  border-top-width: 2px;
+  border-right-width: 2px;
+  border-top-right-radius: 4px;
+}
+.corner-ornament-pair span:nth-child(2) {
+  bottom: 8px;
+  left: 8px;
+  border-bottom-width: 2px;
+  border-left-width: 2px;
+  border-bottom-left-radius: 4px;
+}
+.group:hover .corner-ornament-pair span {
+  opacity: 1;
+  width: 30px;
+  height: 30px;
+}
+
+/* ---------- Rotating copper border ring (hero profile card) ---------- */
+.profile-ring {
+  position: relative;
+  isolation: isolate;
+}
+.profile-ring::before {
+  content: "";
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    color-mix(in oklch, var(--copper) 90%, transparent) 50deg,
+    color-mix(in oklch, var(--copper) 70%, transparent) 130deg,
+    transparent 200deg,
+    transparent 250deg,
+    color-mix(in oklch, var(--copper) 80%, transparent) 310deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 1;
+  animation: profile-ring-rotate 18s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+@keyframes profile-ring-rotate {
+  to { transform: rotate(360deg); }
+}
+/* Pause the rotating ring when the hero is off-screen (perf). */
+.profile-ring.ring-paused::before {
+  animation-play-state: paused;
+}
+
+/* ---------- Oversized pull-quote mark ---------- */
+.quote-mark {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-weight: 600;
+  font-size: 5.5rem;
+  line-height: 0.6;
+  color: color-mix(in oklch, var(--copper) 55%, transparent);
+  display: block;
+  font-feature-settings: "ss01";
+}
+
+/* ---------- Tooling chip hover lift with copper edge ---------- */
+.chip-lift {
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+.chip-lift::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -3px;
+  height: 1px;
+  width: 0;
+  background: var(--copper);
+  transform: translateX(-50%);
+  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.chip-lift:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in oklch, var(--copper) 45%, var(--border));
+  color: var(--copper);
+}
+.chip-lift:hover::after {
+  width: 60%;
+}
+
+/* ---------- Timeline node hover burst ---------- */
+.tl-node {
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.tl-node::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in oklch, var(--copper) 40%, transparent);
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.group:hover .tl-node {
+  transform: scale(1.4);
+}
+.group:hover .tl-node::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ---------- Palette match highlight ---------- */
+mark.palette-mark {
+  background: color-mix(in oklch, var(--copper) 24%, transparent);
+  color: var(--copper);
+  border-radius: 2px;
+  padding: 0 1px;
+  font-weight: 600;
+}
+
+/* ---------- Animated section number badge ---------- */
+.sec-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  height: 1.25rem;
+  padding: 0 0.4rem;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in oklch, var(--copper) 35%, transparent);
+  background: color-mix(in oklch, var(--copper) 8%, transparent);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--copper);
+}
+
+/* ---------- Hero name copper bloom ---------- */
+/* A soft radial copper glow that sits behind the H1 name to give it depth.
+   Applied on a wrapper around the <h1>. */
+.hero-name-wrap {
+  position: relative;
+  display: inline-block;
+}
+.hero-name-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -18% -8% -12% -8%;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    60% 70% at 30% 55%,
+    color-mix(in oklch, var(--copper) 22%, transparent),
+    transparent 70%
+  );
+  filter: blur(8px);
+  opacity: 0.55;
+}
+.dark .hero-name-wrap::before {
+  opacity: 0.85;
+  background: radial-gradient(
+    60% 70% at 30% 55%,
+    color-mix(in oklch, var(--copper) 32%, transparent),
+    transparent 72%
+  );
+}
+
+/* ---------- Timeline: 3D node glow + spine glow + year/tag treatment ---------- */
+/* The spine uses a copper-tinted gradient with a soft animated glow that
+   travels top→bottom on a slow loop, evoking a signal trace. */
+.tl-spine {
+  background: linear-gradient(
+    to bottom,
+    color-mix(in oklch, var(--copper) 70%, transparent) 0%,
+    color-mix(in oklch, var(--copper) 30%, transparent) 25%,
+    var(--border) 60%,
+    transparent 100%
+  );
+}
+.tl-spine::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -10%;
+  width: 100%;
+  height: 18%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in oklch, var(--copper) 80%, transparent),
+    transparent
+  );
+  filter: blur(3px);
+  opacity: 0.7;
+  animation: tl-spine-trace 6s ease-in-out infinite;
+}
+@keyframes tl-spine-trace {
+  0%   { transform: translateY(0); opacity: 0; }
+  15%  { opacity: 0.8; }
+  85%  { opacity: 0.8; }
+  100% { transform: translateY(620%); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tl-spine::after { animation: none; display: none; }
+}
+
+/* Node marker — a "3D" copper sphere with specular highlight + hover ring burst */
+.tl-node {
+  position: relative;
+  background: radial-gradient(
+    circle at 35% 30%,
+    color-mix(in oklch, var(--copper) 95%, white 25%) 0%,
+    var(--copper) 45%,
+    color-mix(in oklch, var(--copper) 55%, black 25%) 100%
+  );
+  box-shadow:
+    0 0 0 1px color-mix(in oklch, var(--copper) 40%, transparent),
+    0 1px 3px rgba(0,0,0,0.3),
+    0 0 12px -2px color-mix(in oklch, var(--copper) 70%, transparent);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.group:hover .tl-node {
+  transform: scale(1.35);
+  box-shadow:
+    0 0 0 2px color-mix(in oklch, var(--copper) 60%, transparent),
+    0 0 18px 0 color-mix(in oklch, var(--copper) 80%, transparent);
+}
+.tl-node-burst {
+  position: absolute;
+  inset: -6px;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in oklch, var(--copper) 50%, transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.5s ease;
+}
+.group:hover .tl-node-burst {
+  opacity: 1;
+  transform: scale(1.6);
+}
+
+/* Year label — copper underline accent on hover */
+.tl-year {
+  position: relative;
+  display: inline-block;
+}
+.tl-year::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 1px;
+  background: var(--copper);
+  transition: width 0.3s ease;
+}
+.group:hover .tl-year::after { width: 100%; }
+
+/* Tag pill — copper-tinted on hover with subtle bg */
+.tl-tag {
+  transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+.group:hover .tl-tag {
+  border-color: color-mix(in oklch, var(--copper) 50%, transparent);
+  background-color: color-mix(in oklch, var(--copper) 12%, transparent);
+}
+
+/* Status badge — color-coded by status type (now/active/ongoing/earlier) */
+.tl-status {
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+.tl-status-now {
+  border-color: color-mix(in oklch, var(--copper) 70%, transparent);
+  background: color-mix(in oklch, var(--copper) 22%, transparent);
+  color: var(--copper);
+  box-shadow: 0 0 14px -4px color-mix(in oklch, var(--copper) 60%, transparent);
+}
+.tl-status-now::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 9999px;
+  background: var(--copper);
+  margin-right: 4px;
+  animation: status-pulse 1.8s ease-in-out infinite;
+}
+.tl-status-active {
+  border-color: color-mix(in oklch, var(--copper) 50%, transparent);
+  background: color-mix(in oklch, var(--copper) 12%, transparent);
+  color: color-mix(in oklch, var(--copper) 90%, var(--foreground));
+}
+.tl-status-ongoing {
+  border-style: dashed;
+  border-color: color-mix(in oklch, var(--copper) 45%, transparent);
+  background: transparent;
+  color: color-mix(in oklch, var(--copper) 80%, var(--foreground));
+}
+.tl-status-earlier {
+  border-color: var(--border);
+  background: color-mix(in oklch, var(--muted) 30%, transparent);
+  color: var(--muted-foreground);
+}
+.tl-metric {
+  transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+}
+.group:hover .tl-metric {
+  border-color: color-mix(in oklch, var(--copper) 50%, transparent);
+  background: color-mix(in oklch, var(--copper) 10%, transparent);
+  transform: translateX(2px);
+}
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 6s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-spin-slow { animation: none; }
+  .tl-status-now::before { animation: none; }
+}
+
+/* ---------- Research: lens tab + screenshot frame polish ---------- */
+/* Lens tabs get a copper top-edge accent + filled copper pill on active. */
+.lens-tab {
+  position: relative;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  padding: 0.5rem 1.1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+.lens-tab:hover {
+  color: var(--foreground);
+  border-color: color-mix(in oklch, var(--copper) 45%, transparent);
+}
+.lens-tab[data-active="true"] {
+  color: var(--copper-foreground);
+  border-color: var(--copper);
+}
+
+/* MANTiS screenshot frame — thin copper border + soft shadow + corner ticks */
+.shot-frame {
+  position: relative;
+  border: 1px solid color-mix(in oklch, var(--copper) 30%, var(--border));
+  box-shadow:
+    0 8px 28px -16px rgba(0,0,0,0.35),
+    0 0 0 1px color-mix(in oklch, var(--copper) 8%, transparent);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+.shot-frame:hover {
+  border-color: color-mix(in oklch, var(--copper) 55%, transparent);
+  box-shadow:
+    0 14px 38px -16px rgba(0,0,0,0.4),
+    0 0 0 1px color-mix(in oklch, var(--copper) 18%, transparent);
+}
+.shot-frame::before,
+.shot-frame::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  pointer-events: none;
+  z-index: 2;
+  border-color: var(--copper);
+  border-style: solid;
+  border-width: 0;
+  opacity: 0.7;
+}
+.shot-frame::before {
+  top: 6px; left: 6px;
+  border-top-width: 1.5px;
+  border-left-width: 1.5px;
+  border-top-left-radius: 3px;
+}
+.shot-frame::after {
+  bottom: 6px; right: 6px;
+  border-bottom-width: 1.5px;
+  border-right-width: 1.5px;
+  border-bottom-right-radius: 3px;
+}
+
+/* ---------- Principles: copper ordinals + dividers + hover lift ---------- */
+.principle-row {
+  position: relative;
+  transition: padding-left 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.4s ease;
+  border-radius: 0.5rem;
+}
+.principle-row:hover {
+  padding-left: 1rem;
+  background-color: color-mix(in oklch, var(--copper) 5%, transparent);
+}
+.principle-ord {
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklch, var(--copper) 85%, transparent),
+    color-mix(in oklch, var(--copper) 45%, transparent)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 18px color-mix(in oklch, var(--copper) 30%, transparent);
+  transition: transform 0.3s ease;
+}
+.principle-row:hover .principle-ord {
+  transform: translateX(-2px) scale(1.06);
+}
+
+/* ---------- Principles v2: card + icon disc + domain chip ---------- */
+.principle-card {
+  transition: border-color 0.4s ease, background-color 0.4s ease,
+    box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.principle-card:hover {
+  border-color: color-mix(in oklch, var(--copper) 45%, transparent);
+  background-color: color-mix(in oklch, var(--copper) 4%, var(--card));
+  box-shadow: 0 6px 24px -12px color-mix(in oklch, var(--copper) 45%, transparent);
+}
+.principle-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.625rem;
+  border: 1px solid color-mix(in oklch, var(--copper) 35%, transparent);
+  background: color-mix(in oklch, var(--copper) 9%, transparent);
+  color: var(--copper);
+  flex-shrink: 0;
+  transition: border-color 0.4s ease, background-color 0.4s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.principle-card:hover .principle-icon {
+  border-color: color-mix(in oklch, var(--copper) 70%, transparent);
+  background: color-mix(in oklch, var(--copper) 18%, transparent);
+  transform: scale(1.06) rotate(-3deg);
+}
+.dark .principle-icon {
+  background: color-mix(in oklch, var(--copper) 14%, transparent);
+  box-shadow: 0 0 14px -4px color-mix(in oklch, var(--copper) 50%, transparent);
+}
+.dark .principle-card:hover .principle-icon {
+  background: color-mix(in oklch, var(--copper) 24%, transparent);
+  box-shadow: 0 0 22px -4px color-mix(in oklch, var(--copper) 70%, transparent);
+}
+.principle-domain {
+  letter-spacing: 0.18em;
+}
+
+/* ---------- Stats: copper diamond separators + eyebrow divider ---------- */
+.stats-divider {
+  width: 5px;
+  height: 5px;
+  transform: rotate(45deg);
+  background: color-mix(in oklch, var(--copper) 70%, transparent);
+  display: inline-block;
+}
+.stats-eyebrow-rule {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    color-mix(in oklch, var(--copper) 45%, transparent),
+    transparent
+  );
+}
+
+/* ---------- Hero instrument frame ---------- */
+/* Four oversized copper L-brackets at the corners of the hero viewport,
+   evoking a scientific instrument reticle. Purely decorative. */
+.hero-frame {
+  position: absolute;
+  inset: 1.25rem;
+  pointer-events: none;
+  z-index: 1;
+}
+@media (min-width: 640px) {
+  .hero-frame { inset: 1.75rem; }
+}
+.hero-frame span {
+  position: absolute;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-color: color-mix(in oklch, var(--copper) 55%, transparent);
+  border-style: solid;
+  border-width: 0;
+  opacity: 0.55;
+  transition: opacity 0.6s ease, border-color 0.6s ease;
+}
+.hero-frame span:nth-child(1) {
+  top: 0; left: 0;
+  border-top-width: 1.5px;
+  border-left-width: 1.5px;
+  border-top-left-radius: 6px;
+}
+.hero-frame span:nth-child(2) {
+  top: 0; right: 0;
+  border-top-width: 1.5px;
+  border-right-width: 1.5px;
+  border-top-right-radius: 6px;
+}
+.hero-frame span:nth-child(3) {
+  bottom: 0; left: 0;
+  border-bottom-width: 1.5px;
+  border-left-width: 1.5px;
+  border-bottom-left-radius: 6px;
+}
+.hero-frame span:nth-child(4) {
+  bottom: 0; right: 0;
+  border-bottom-width: 1.5px;
+  border-right-width: 1.5px;
+  border-bottom-right-radius: 6px;
+}
+.dark .hero-frame span {
+  border-color: color-mix(in oklch, var(--copper) 70%, transparent);
+  opacity: 0.7;
+}
+
+/* ---------- Hero name accent underline ---------- */
+/* A short copper hairline that draws out from the left beneath the H1
+   on mount — adds typographic detail and reinforces the copper accent. */
+.hero-name-underline {
+  display: block;
+  height: 2px;
+  width: 0;
+  margin-top: 1.25rem;
+  background: linear-gradient(
+    to right,
+    var(--copper),
+    color-mix(in oklch, var(--copper) 30%, transparent)
+  );
+  border-radius: 2px;
+  transform-origin: left center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-name-underline { width: 3rem; }
+}
+
+/* ---------- Connect form polish ---------- */
+/* Copper focus ring + elevated send button shadow. */
+.connect-field input,
+.connect-field textarea {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.connect-field:focus-within input,
+.connect-field:focus-within textarea {
+  border-color: color-mix(in oklch, var(--copper) 55%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--copper) 18%, transparent);
+}
+.connect-send {
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+.connect-send:hover:not(:disabled) {
+  box-shadow: 0 10px 34px -10px var(--copper);
+}
+
+/* ---------- Projects filter chip (filled active state) ---------- */
+.filter-chip {
+  position: relative;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.95rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+.filter-ch:hover {
+  color: var(--foreground);
+  border-color: color-mix(in oklch, var(--copper) 40%, transparent);
+}
+.filter-ch[data-active="true"] {
+  color: var(--copper-foreground);
+  border-color: var(--copper);
+}
+.filter-ch-count {
+  margin-left: 0.45rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.625rem;
+  opacity: 0.7;
+}
+
+/* ---------- Vim `g` arming hint ---------- */
+.vim-hint {
+  position: fixed;
+  left: 50%;
+  bottom: 5.5rem;
+  transform: translateX(-50%);
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in oklch, var(--copper) 45%, transparent);
+  background: color-mix(in oklch, var(--card) 92%, transparent);
+  backdrop-filter: blur(12px);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: var(--foreground);
+  box-shadow: 0 10px 30px -12px rgba(0,0,0,0.4);
+  pointer-events: none;
+}
+.vim-hint .vim-hint-bar {
+  position: relative;
+  width: 3.25rem;
+  height: 2px;
+  border-radius: 2px;
+  background: color-mix(in oklch, var(--copper) 25%, transparent);
+  overflow: hidden;
+}
+.vim-hint .vim-hint-bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--copper);
+  transform-origin: left center;
+  animation: vim-hint-shrink 0.9s linear forwards;
+}
+@keyframes vim-hint-shrink {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vim-hint .vim-hint-bar::after { animation: none; transform: scaleX(0.4); }
+}
+
+/* ---------- Back-to-top section chip ---------- */
+.bttop-chip {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  white-space: nowrap;
+}
+
+/* ---------- Atelier section divider ---------- */
+/* A centered copper lozenge flanked by two hairlines that draw outward
+   on scroll-into-view. Rhythm between major sections. */
+.atelier-divider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  padding: 1.25rem 0;
+  max-width: 18rem;
+  margin-inline: auto;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.atelier-divider.in-view {
+  opacity: 1;
+  transform: none;
+}
+.atelier-divider::before,
+.atelier-divider::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(
+    to var(--ad-dir, right),
+    transparent,
+    color-mix(in oklch, var(--copper) 45%, transparent)
+  );
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.atelier-divider::before { transform-origin: right; }
+.atelier-divider::after { transform-origin: left; }
+.atelier-divider.in-view::before,
+.atelier-divider.in-view::after {
+  transform: scaleX(1);
+}
+.atelier-divider .lozenge {
+  position: relative;
+  display: inline-flex;
+  width: 9px;
+  height: 9px;
+  transform: rotate(45deg);
+  border: 1px solid color-mix(in oklch, var(--copper) 70%, transparent);
+  background: color-mix(in oklch, var(--copper) 14%, transparent);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.4s ease;
+}
+.atelier-divider.in-view .lozenge {
+  animation: lozenge-spin 6s ease-in-out infinite;
+}
+@keyframes lozenge-spin {
+  0%, 100% { transform: rotate(45deg); }
+  50% { transform: rotate(225deg); background-color: color-mix(in oklch, var(--copper) 32%, transparent); }
+}
+
+/* ---------- Field Notes: copper tag pills + card hover depth ---------- */
+.fn-tag {
+  border-color: color-mix(in oklch, var(--copper) 40%, var(--border));
+  background: color-mix(in oklch, var(--copper) 10%, transparent);
+  color: var(--copper);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.group:hover .fn-tag {
+  background: color-mix(in oklch, var(--copper) 18%, transparent);
+  border-color: color-mix(in oklch, var(--copper) 60%, transparent);
+}
+.fn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 0.4rem;
+  border: 1px solid color-mix(in oklch, var(--copper) 35%, transparent);
+  background: color-mix(in oklch, var(--copper) 9%, transparent);
+  color: var(--copper);
+  flex-shrink: 0;
+  transition: border-color 0.4s ease, background-color 0.4s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.group:hover .fn-icon {
+  border-color: color-mix(in oklch, var(--copper) 65%, transparent);
+  background: color-mix(in oklch, var(--copper) 18%, transparent);
+  transform: scale(1.08);
+}
+.dark .fn-icon {
+  background: color-mix(in oklch, var(--copper) 14%, transparent);
+  box-shadow: 0 0 10px -3px color-mix(in oklch, var(--copper) 50%, transparent);
+}
+.fn-draft-badge {
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* ---------- Projects: repo icon disc + corner mark + stack chips ---------- */
+.project-card {
+  transition: border-color 0.4s ease, background-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+.project-card:hover {
+  border-color: color-mix(in oklch, var(--copper) 45%, transparent);
+  background-color: color-mix(in oklch, var(--copper) 3%, var(--card));
+  box-shadow: 0 8px 30px -16px color-mix(in oklch, var(--copper) 40%, transparent);
+}
+.project-repo-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid color-mix(in oklch, var(--copper) 35%, transparent);
+  background: color-mix(in oklch, var(--copper) 9%, transparent);
+  color: var(--copper);
+  flex-shrink: 0;
+  transition: border-color 0.4s ease, background-color 0.4s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.project-card:hover .project-repo-icon {
+  border-color: color-mix(in oklch, var(--copper) 70%, transparent);
+  background: color-mix(in oklch, var(--copper) 18%, transparent);
+  transform: scale(1.06);
+}
+.dark .project-repo-icon {
+  background: color-mix(in oklch, var(--copper) 14%, transparent);
+  box-shadow: 0 0 12px -4px color-mix(in oklch, var(--copper) 50%, transparent);
+}
+.project-corner {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 0.875rem;
+  height: 0.875rem;
+  border-top: 1.5px solid color-mix(in oklch, var(--copper) 50%, transparent);
+  border-right: 1.5px solid color-mix(in oklch, var(--copper) 50%, transparent);
+  border-top-right-radius: 3px;
+  opacity: 0.6;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.project-card:hover .project-corner {
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
+.project-stack-chip {
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+/* ---------- Expertise: copper gradient bar + shimmer ---------- */
+.skill-bar-track {
+  position: relative;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: color-mix(in oklch, var(--copper) 12%, var(--border));
+  overflow: hidden;
+}
+.skill-bar-fill {
+  position: relative;
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklch, var(--copper) 55%, transparent),
+    var(--copper) 60%,
+    color-mix(in oklch, var(--copper) 80%, white 20%)
+  );
+  box-shadow: 0 0 10px -4px color-mix(in oklch, var(--copper) 60%, transparent);
+}
+.skill-bar-fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklch, var(--copper-foreground) 35%, transparent),
+    transparent
+  );
+  background-size: 50% 100%;
+  animation: bar-shimmer 3s linear infinite;
+}
+@keyframes bar-shimmer {
+  0% { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .skill-bar-fill::after { animation: none; opacity: 0; }
+}
+
+/* ---------- Footer: copper accent top rule + branding mark ---------- */
+.footer-rule {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    color-mix(in oklch, var(--copper) 50%, transparent) 30%,
+    color-mix(in oklch, var(--copper) 50%, transparent) 70%,
+    transparent
+  );
+}
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  border: 1px solid color-mix(in oklch, var(--copper) 40%, var(--border));
+  background: color-mix(in oklch, var(--copper) 8%, transparent);
+  color: var(--copper);
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-weight: 600;
+  font-size: 0.7rem;
+  letter-spacing: 0.02em;
+}
+
+/* ---------- Section heading anchor-link button ---------- */
+.section-anchor {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 0.375rem;
+  color: var(--muted-foreground);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.25s ease, transform 0.25s ease, color 0.25s ease;
+  text-decoration: none;
+}
+.section-anchor:hover {
+  color: var(--copper);
+}
+.group:hover .section-anchor,
+h2:hover .section-anchor {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ---------- Navbar: per-section progress bar ---------- */
+.nav-section-bar {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  background: var(--copper);
+  border-radius: 2px;
+  transform-origin: left center;
+}
+
+/* ---------- Expertise row icon chip ---------- */
+.expertise-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid color-mix(in oklch, var(--copper) 30%, var(--border));
+  background: color-mix(in oklch, var(--copper) 8%, transparent);
+  color: var(--copper);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease, background-color 0.35s ease;
+}
+.group:hover .expertise-icon {
+  transform: translateY(-1px) rotate(-3deg);
+  border-color: color-mix(in oklch, var(--copper) 60%, transparent);
+  background: color-mix(in oklch, var(--copper) 16%, transparent);
+}
+
+/* ---------- Timeline node ordinal ---------- */
+.tl-ord {
+  position: absolute;
+  left: -3.25rem;
+  top: -0.15rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: color-mix(in oklch, var(--copper) 60%, var(--muted-foreground));
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity 0.35s ease, transform 0.35s ease, color 0.35s ease;
+}
+.group:hover .tl-ord {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--copper);
+}
+@media (max-width: 639px) {
+  .tl-ord { display: none; }
+}
+
+/* ---------- Keyboard key styling (shortcuts overlay) ---------- */
+.kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  padding: 0 0.4rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--foreground);
+  background: color-mix(in oklch, var(--card) 80%, var(--border));
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  border-radius: 0.375rem;
+  line-height: 1;
+}
+
+/* ---------- "Currently" live ticker ---------- */
+.ticker-track {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-inline: 0.5rem;
+}
+
+/* ---------- Toast: atelier copper accent ---------- */
+/* Override default shadcn toast with a copper left rail + dark paper surface. */
+[data-sonner-toaster] [data-sonner-toast],
+li[role="status"][data-state] {
+  border-left: 3px solid var(--copper) !important;
+}
+[data-radix-toast-viewport] > li[role="status"] {
+  border-left: 3px solid var(--copper) !important;
+  background: color-mix(in oklch, var(--card) 92%, transparent) !important;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px -12px rgba(0,0,0,0.4),
+    0 0 0 1px color-mix(in oklch, var(--copper) 20%, transparent),
+    0 0 20px -8px color-mix(in oklch, var(--copper) 35%, transparent) !important;
+}
+[data-radix-toast-viewport] > li[role="status"] [data-title] {
+  font-family: var(--font-fraunces), serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+}
+[data-radix-toast-viewport] > li[role="status"] [data-description] {
+  color: var(--muted-foreground);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11px;
+}
+
+/* ---------- Theme popover (3-state: light/dark/system) ---------- */
+.theme-popover {
+  border-color: color-mix(in oklch, var(--copper) 25%, var(--border)) !important;
+  box-shadow: 0 12px 36px -10px rgba(0,0,0,0.5),
+    0 0 0 1px color-mix(in oklch, var(--copper) 12%, transparent),
+    0 0 24px -10px color-mix(in oklch, var(--copper) 30%, transparent) !important;
+}
+
+/* ---------- Returning-visitor "Continue where you left off" banner ---------- */
+.resume-banner {
+  position: fixed;
+  left: 50%;
+  bottom: 1.25rem;
+  transform: translateX(-50%);
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 0.875rem 0.625rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in oklch, var(--copper) 35%, transparent);
+  background: color-mix(in oklch, var(--card) 88%, transparent);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 12px 36px -10px rgba(0,0,0,0.45),
+    0 0 0 1px color-mix(in oklch, var(--copper) 14%, transparent),
+    0 0 24px -8px color-mix(in oklch, var(--copper) 35%, transparent);
+  font-size: 12.5px;
+  max-width: calc(100vw - 2rem);
+}
+.resume-banner-pulse {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in oklch, var(--copper) 50%, transparent);
+  background: color-mix(in oklch, var(--copper) 14%, transparent);
+  color: var(--copper);
+  flex-shrink: 0;
+}
+.resume-banner-pulse::before {
+  content: "";
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in oklch, var(--copper) 60%, transparent);
+  animation: resume-ping 1.8s ease-out infinite;
+}
+@keyframes resume-ping {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+.resume-banner-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 9999px;
+  background: var(--copper);
+  color: white;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+.resume-banner-cta:hover {
+  filter: brightness(1.1);
+  transform: translateX(1px);
+}
+.resume-banner-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  color: var(--muted-foreground);
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+.resume-banner-close:hover {
+  color: var(--foreground);
+  background: color-mix(in oklch, var(--copper) 12%, transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .resume-banner-pulse::before { animation: none; opacity: 0; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .name-gradient { animation: none; background-position: 0 50%; }
+  .marquee-track { animation: none; }
+  .profile-ring::before { animation: none; opacity: 0.5; }
+  .corner-ornament::before,
+  .corner-ornament::after,
+  .corner-ornament-pair span { opacity: 0.8; }
+  .atelier-divider { opacity: 1; transform: none; }
+  .atelier-divider::before,
+  .atelier-divider::after { transform: scaleX(1); }
+  .atelier-divider .lozenge { animation: none; }
+  .hero-name-wrap::before { opacity: 0.4; }
+  .skill-bar-fill::after { animation: none; opacity: 0; }
+  .section-anchor { opacity: 0.6; transform: translateX(0); }
+}
+
+/* ============================================================ */
+/* Round 10 — Spectral decomposition viz (Research / MANTiS)    */
+/* ============================================================ */
+.spectral-viz {
+  background:
+    radial-gradient(120% 90% at 0% 0%, color-mix(in oklch, var(--copper) 8%, transparent), transparent 60%),
+    var(--paper);
+  box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--copper) 8%, transparent);
+}
+.dark .spectral-viz {
+  background:
+    radial-gradient(120% 90% at 0% 0%, color-mix(in oklch, var(--copper) 12%, transparent), transparent 60%),
+    color-mix(in oklch, var(--ink) 60%, transparent);
+}
+.spectral-viz canvas {
+  image-rendering: pixelated;
+}
+.spectral-viz-overlay {
+  color: var(--muted-foreground);
+}
+.sv-label {
+  font-family: ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in oklch, var(--copper) 75%, var(--muted-foreground));
+  background: color-mix(in oklch, var(--paper) 80%, transparent);
+  padding: 2px 6px;
+  border-radius: 3px;
+  backdrop-filter: blur(4px);
+}
+.dark .sv-label {
+  background: color-mix(in oklch, var(--ink) 72%, transparent);
+}
+.sv-label-mono {
+  color: var(--muted-foreground);
+  letter-spacing: 0.08em;
+}
+.sv-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: ui-monospace, monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--copper);
+  background: color-mix(in oklch, var(--paper) 80%, transparent);
+  padding: 2px 6px;
+  border-radius: 3px;
+  backdrop-filter: blur(4px);
+}
+.dark .sv-status {
+  background: color-mix(in oklch, var(--ink) 72%, transparent);
+}
+.sv-status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--copper);
+  box-shadow: 0 0 6px var(--copper);
+  animation: sv-dot 1.4s ease-in-out infinite;
+}
+@keyframes sv-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sv-status-dot { animation: none; }
+}
+
+/* ============================================================ */
+/* Round 10 — GitHub contribution heatmap (Expertise)           */
+/* ============================================================ */
+.gh-heatmap-card {
+  position: relative;
+  border: 1px solid color-mix(in oklch, var(--copper) 18%, var(--border));
+  border-radius: 14px;
+  background:
+    radial-gradient(80% 60% at 100% 0%, color-mix(in oklch, var(--copper) 7%, transparent), transparent 70%),
+    color-mix(in oklch, var(--paper) 55%, transparent);
+  padding: 16px 18px 18px;
+  overflow: hidden;
+}
+.dark .gh-heatmap-card {
+  background:
+    radial-gradient(80% 60% at 100% 0%, color-mix(in oklch, var(--copper) 10%, transparent), transparent 70%),
+    color-mix(in oklch, var(--ink) 50%, transparent);
+}
+.gh-heatmap-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 0, color-mix(in oklch, var(--copper) 22%, transparent) 50%, transparent 100%);
+  height: 2px;
+  top: 0;
+}
+.gh-heatmap-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.gh-heatmap-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+.gh-heatmap-title strong {
+  color: var(--foreground);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+.gh-live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: ui-monospace, monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--copper);
+  border: 1px solid color-mix(in oklch, var(--copper) 35%, transparent);
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--copper) 8%, transparent);
+}
+.gh-live-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--copper);
+  box-shadow: 0 0 6px var(--copper);
+  animation: sv-dot 1.4s ease-in-out infinite;
+}
+.gh-grid-wrap {
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+}
+.gh-grid {
+  display: grid;
+  grid-template-rows: repeat(7, 11px);
+  grid-auto-flow: column;
+  grid-auto-columns: 11px;
+  gap: 3px;
+  min-width: 540px;
+}
+.gh-cell {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  background: color-mix(in oklch, var(--muted-foreground) 12%, transparent);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.gh-cell[data-level="1"] { background: color-mix(in oklch, var(--copper) 28%, transparent); }
+.gh-cell[data-level="2"] { background: color-mix(in oklch, var(--copper) 48%, transparent); }
+.gh-cell[data-level="3"] { background: color-mix(in oklch, var(--copper) 70%, transparent); }
+.gh-cell[data-level="4"] { background: var(--copper); box-shadow: 0 0 5px color-mix(in oklch, var(--copper) 60%, transparent); }
+.gh-cell:hover {
+  transform: scale(1.4);
+  z-index: 2;
+  outline: 1px solid color-mix(in oklch, var(--copper) 60%, transparent);
+}
+.gh-month-labels {
+  display: flex;
+  gap: 3px;
+  margin-top: 6px;
+  font-family: ui-monospace, monospace;
+  font-size: 9px;
+  color: var(--muted-foreground);
+  letter-spacing: 0.06em;
+  min-width: 540px;
+}
+.gh-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 22px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed color-mix(in oklch, var(--copper) 22%, var(--border));
+}
+.gh-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.gh-stat-num {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--copper);
+  font-variant-numeric: tabular-nums;
+}
+.gh-stat-label {
+  font-family: ui-monospace, monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+.gh-legend {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: ui-monospace, monospace;
+  font-size: 9px;
+  color: var(--muted-foreground);
+  letter-spacing: 0.08em;
+}
+.gh-legend-cells {
+  display: inline-flex;
+  gap: 3px;
+}
+.gh-legend-cells .gh-cell { border-radius: 2px; }
+
+/* ============================================================ */
+/* Round 10 — Read-time chip + section reading progress         */
+/* ============================================================ */
+.readtime-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  border: 1px solid color-mix(in oklch, var(--copper) 22%, var(--border));
+  background: color-mix(in oklch, var(--copper) 5%, transparent);
+  padding: 2px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.readtime-chip svg {
+  color: var(--copper);
+}
+.section-anchor {
+  position: relative;
+  overflow: hidden;
+}
+.section-anchor::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 2px;
+  width: var(--read-progress, 0%);
+  background: linear-gradient(90deg, var(--copper), color-mix(in oklch, var(--copper) 30%, transparent));
+  border-radius: 2px;
+  transition: width 0.12s linear;
+}
+
+/* ============================================================ */
+/* Round 10 — Recently viewed in command palette                */
+/* ============================================================ */
+.palette-recent-group [cmdk-group-heading] {
+  color: var(--copper);
+  font-weight: 600;
+}
+.palette-recent-row {
+  position: relative;
+}
+.palette-recent-row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 60%;
+  background: var(--copper);
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.palette-recent-row[data-selected="true"]::before {
+  opacity: 1;
+}
+
+/* ============================================================ */
+/* Round 10 — Keyboard section focus mode                       */
+/* ============================================================ */
+.focus-mode-active section[id] {
+  scroll-margin-top: 96px;
+}
+.focus-mode-active section[id].is-focused {
+  outline: 2px solid color-mix(in oklch, var(--copper) 70%, transparent);
+  outline-offset: -2px;
+  border-radius: 14px;
+  box-shadow:
+    0 0 0 6px color-mix(in oklch, var(--copper) 10%, transparent),
+    0 18px 40px -12px color-mix(in oklch, var(--copper) 25%, transparent);
+  transition: outline 0.2s ease, box-shadow 0.2s ease;
+}
+.focus-mode-active main > *:not(.is-focused):not(.focus-hud) {
+  opacity: 0.32;
+  filter: saturate(0.6);
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+.focus-hud {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklch, var(--copper) 35%, var(--border));
+  background: color-mix(in oklch, var(--paper) 92%, transparent);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 14px 40px -12px color-mix(in oklch, var(--copper) 30%, transparent);
+  font-family: ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  animation: focus-hud-in 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.dark .focus-hud {
+  background: color-mix(in oklch, var(--ink) 88%, transparent);
+}
+.focus-hud .fh-label {
+  color: var(--copper);
+  font-weight: 600;
+}
+.focus-hud .fh-frac {
+  color: var(--foreground);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.focus-hud .fh-sep {
+  width: 1px;
+  height: 14px;
+  background: color-mix(in oklch, var(--copper) 30%, var(--border));
+}
+.focus-hud kbd {
+  display: inline-block;
+  border: 1px solid color-mix(in oklch, var(--copper) 30%, var(--border));
+  background: color-mix(in oklch, var(--copper) 8%, transparent);
+  color: var(--foreground);
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: 10px;
+  font-family: ui-monospace, monospace;
+}
+@keyframes focus-hud-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(8px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .focus-hud { animation: none; }
+}
