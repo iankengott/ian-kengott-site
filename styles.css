@@ -363,6 +363,18 @@ h3 {
   background: linear-gradient(180deg, color-mix(in srgb, var(--accent-soft) 52%, transparent), transparent);
 }
 
+.systems-head {
+  max-width: 760px;
+}
+
+.systems-head h2 {
+  margin-bottom: 0;
+}
+
+.systems .grid {
+  margin-top: 34px;
+}
+
 .research-summary {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(280px, 0.55fr);
