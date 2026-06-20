@@ -1,14 +1,14 @@
 # Ian Kengott
 
-A research-first personal website for Ian Kengott.
+A research-first personal website by Ian Kengott.
 
 **Live website:** https://iankengott.github.io/ian-kengott-site/
 
 **Research sessions:** https://ian-kengott-gf63-thin-11sc.tail48a7cb.ts.net/sessions
 
-The site is intentionally static: no trackers, no build step, and no private operational details. It uses public GitHub links plus a broad profile gathered from Ian's own local/server context.
+This site is intentionally static: no trackers, no build step, and no private operational details. It uses public GitHub links plus grounded research context from my own local/server notes.
 
-Research sections are written conservatively: Dr. Arena lab context is grounded in public USF sources and Honcho memory, while the MANTiS section is grounded in the local Nix packaging workspace and spectroscopy notes.
+I keep the research sections conservative: Dr. Arena lab context is grounded in public USF sources and my notes, while the MANTiS section is grounded in my local Nix packaging workspace and spectroscopy notes.
 
 ## Files
 
