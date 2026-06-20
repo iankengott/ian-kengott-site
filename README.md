@@ -1,6 +1,10 @@
 # Ian Kengott
 
-A compact personal website for Ian Kengott.
+A research-first personal website for Ian Kengott.
+
+**Live website:** https://iankengott.github.io/ian-kengott-site/
+
+**Research sessions:** https://ian-kengott-gf63-thin-11sc.tail48a7cb.ts.net/sessions
 
 The site is intentionally static: no trackers, no build step, and no private operational details. It uses public GitHub links plus a broad profile gathered from Ian's own local/server context.
 
