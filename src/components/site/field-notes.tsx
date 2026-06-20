@@ -24,7 +24,7 @@ export function FieldNotes() {
       <Reveal className="flex flex-col gap-4 border-b border-border/60 pb-8 sm:flex-row sm:items-end sm:justify-between">
         <div className="max-w-2xl">
           <p className="eyebrow mb-2 flex items-center gap-2">
-            <span className="sec-num">06</span>
+            <span className="sec-num">05</span>
             <BookOpen className="h-3.5 w-3.5" />
             Field Notes
           </p>

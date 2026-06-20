@@ -223,27 +223,6 @@ export function Hero() {
           </div>
         </motion.aside>
       </div>
-
-      {/* Scroll cue */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.1, duration: 0.8 }}
-        className="mt-16 flex justify-center"
-      >
-        <div className="flex flex-col items-center gap-2 text-muted-foreground">
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em]">
-            Scroll
-          </span>
-          <div className="flex h-9 w-5 items-start justify-center rounded-full border border-border p-1">
-            <motion.span
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-              className="h-1.5 w-1 rounded-full bg-[var(--copper)]"
-            />
-          </div>
-        </div>
-      </motion.div>
     </header>
   );
 }

@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dialog";
 
 /**
- * A guided walking tour of the site's 8 sections.
+ * A guided walking tour of the site's sections.
  *
  * Launched from the command palette ("Take a tour") or via the `TourContext`.
  * Each step scrolls to a section and shows a callout with a one-line summary
@@ -36,9 +36,6 @@ const STEP_NOTES: Record<string, { tip: string; tryHint?: string }> = {
   },
   systems: {
     tip: "AI as support infrastructure, not a headline. Plus what's on the bench right now.",
-  },
-  expertise: {
-    tip: "Honest self-assessed proficiency across the six domains this site covers.",
   },
   projects: {
     tip: "Public repos and experiments, filterable by category.",
@@ -119,7 +116,7 @@ export function TourProvider({ children }: { children: React.ReactNode }) {
         <DialogContent className="max-w-md gap-0 border-border/80 bg-card/95 p-0 backdrop-blur-xl sm:max-w-md">
           <div className="flex items-center justify-between border-b border-border/60 px-5 py-4">
             <div className="flex items-center gap-2.5">
-              <span className="expertise-icon" aria-hidden>
+              <span className="hud-icon" aria-hidden>
                 <Compass className="h-3.5 w-3.5" />
               </span>
               <DialogTitle className="font-display text-base font-semibold tracking-tight">

@@ -137,7 +137,7 @@ export function ShortcutsOverlay() {
           >
             <kbd className="kbd">g</kbd>
             <span>then</span>
-            <span className="text-muted-foreground">r·s·e·p·j·n·c</span>
+            <span className="text-muted-foreground">r·s·p·j·n·c</span>
             <span className="vim-hint-bar" aria-hidden />
           </motion.div>
         )}
@@ -147,7 +147,7 @@ export function ShortcutsOverlay() {
         <DialogContent className="max-w-md gap-0 border-border/80 bg-card/95 p-0 backdrop-blur-xl">
         <div className="flex items-center justify-between border-b border-border/60 px-5 py-4">
           <div className="flex items-center gap-2.5">
-            <span className="expertise-icon" aria-hidden>
+            <span className="hud-icon" aria-hidden>
               <Keyboard className="h-3.5 w-3.5" />
             </span>
             <DialogTitle className="font-display text-base font-semibold tracking-tight">

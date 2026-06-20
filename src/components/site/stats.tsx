@@ -1,37 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { useInView, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { STATS } from "@/lib/data";
-
-function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-40px" });
-  const [val, setVal] = useState(0);
-
-  useEffect(() => {
-    if (!inView) return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const duration = reduce ? 0 : 1200;
-    const start = performance.now();
-    let raf = 0;
-    const tick = (now: number) => {
-      const p = duration === 0 ? 1 : Math.min(1, (now - start) / duration);
-      const eased = 1 - Math.pow(1 - p, 3);
-      setVal(Math.round(to * eased));
-      if (p < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [inView, to]);
-
-  return (
-    <span ref={ref}>
-      {val}
-      {suffix}
-    </span>
-  );
-}
 
 const MARQUEE_ITEMS = [
   "Magnonics",
@@ -61,7 +31,7 @@ export function Stats() {
               className="px-5 py-7 sm:py-9"
             >
               <p className="font-display text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-                <Counter to={s.value} suffix={s.suffix} />
+                {s.value}
               </p>
               <p className="mt-2 text-sm font-medium text-foreground/80">
                 {s.label}

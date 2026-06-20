@@ -28,7 +28,7 @@ export function Principles() {
       <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
         <Reveal>
           <p className="eyebrow mb-2 flex items-center gap-2">
-            <span className="sec-num">07</span>
+            <span className="sec-num">06</span>
             Principles
           </p>
           <SectionHeading id="principles" className="font-display text-3xl font-semibold tracking-tight text-balance sm:text-4xl">

@@ -5,7 +5,6 @@ import { Stats } from "@/components/site/stats";
 import { SessionStrip } from "@/components/site/session-strip";
 import { Research } from "@/components/site/research";
 import { Systems } from "@/components/site/systems";
-import { Expertise } from "@/components/site/expertise";
 import { Projects } from "@/components/site/projects";
 import { Timeline } from "@/components/site/timeline";
 import { FieldNotes } from "@/components/site/field-notes";
@@ -20,12 +19,14 @@ import { TourProvider } from "@/components/site/tour";
 import { ResumeBanner } from "@/components/site/resume-banner";
 import { ReadingProgress } from "@/components/site/reading-progress";
 import { FocusMode } from "@/components/site/focus-mode";
+import { AmbientBlochSphere } from "@/components/site/ambient-bloch-sphere";
 
 export default function Home() {
   return (
     <TourProvider>
       <CommandPaletteProvider>
         <div className="relative flex min-h-screen flex-col">
+          <AmbientBlochSphere />
           <ScrollProgress />
           <ReadingProgress />
           <Navbar />
@@ -36,8 +37,6 @@ export default function Home() {
             <Research />
             <AtelierDivider />
             <Systems />
-            <Expertise />
-            <AtelierDivider />
             <Projects />
             <Timeline />
             <AtelierDivider />

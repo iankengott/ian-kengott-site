@@ -158,7 +158,6 @@ function labelFor(id: string): string {
   const map: Record<string, string> = {
     research: "Research",
     systems: "AI & Systems",
-    expertise: "Expertise",
     projects: "Projects",
     journey: "Journey",
     notes: "Field Notes",

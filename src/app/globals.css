@@ -1305,8 +1305,8 @@ h2:hover .section-anchor {
   transform-origin: left center;
 }
 
-/* ---------- Expertise row icon chip ---------- */
-.expertise-icon {
+/* ---------- Small icon chip used in overlays ---------- */
+.hud-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1319,7 +1319,7 @@ h2:hover .section-anchor {
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
     border-color 0.35s ease, background-color 0.35s ease;
 }
-.group:hover .expertise-icon {
+.group:hover .hud-icon {
   transform: translateY(-1px) rotate(-3deg);
   border-color: color-mix(in oklch, var(--copper) 60%, transparent);
   background: color-mix(in oklch, var(--copper) 16%, transparent);

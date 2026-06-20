@@ -29,7 +29,7 @@ export function Timeline() {
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
         <Reveal className="max-w-2xl">
           <p className="eyebrow mb-2 flex items-center gap-2">
-            <span className="sec-num">05</span>
+            <span className="sec-num">04</span>
             <Route className="h-3.5 w-3.5" />
             Journey
           </p>

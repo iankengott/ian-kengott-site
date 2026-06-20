@@ -17,7 +17,6 @@ export const PROFILE = {
 export const NAV_LINKS = [
   { label: "Research", href: "#research" },
   { label: "Systems", href: "#systems" },
-  { label: "Expertise", href: "#expertise" },
   { label: "Projects", href: "#projects" },
   { label: "Journey", href: "#journey" },
   { label: "Notes", href: "#notes" },
@@ -34,7 +33,6 @@ export const NAV_LINKS = [
 export const SECTION_META: Record<string, { readTime: number; label: string }> = {
   research: { readTime: 3, label: "Research" },
   systems: { readTime: 2, label: "AI & Systems" },
-  expertise: { readTime: 2, label: "Expertise" },
   projects: { readTime: 3, label: "Projects" },
   journey: { readTime: 2, label: "Journey" },
   notes: { readTime: 3, label: "Field Notes" },
@@ -43,10 +41,10 @@ export const SECTION_META: Record<string, { readTime: number; label: string }> =
 };
 
 export const STATS = [
-  { value: 3, suffix: "", label: "Research focus areas", sub: "magnonics · muon · MANTiS" },
-  { value: 12, suffix: "+", label: "Public repositories", sub: "tooling & experiments" },
-  { value: 2, suffix: "", label: "Active lab threads", sub: "Arena lab context" },
-  { value: 100, suffix: "%", label: "Reproducible by design", sub: "Nix-packaged" },
+  { value: "03", label: "Research focus areas", sub: "magnonics · muon · MANTiS" },
+  { value: "Live", label: "GitHub metadata", sub: "public API panel below" },
+  { value: "Lab", label: "Dr. Arena context", sub: "magnetic materials work" },
+  { value: "Nix", label: "Reproducible tooling", sub: "packaging-first habit" },
 ];
 
 export const LENSES = [
@@ -118,24 +116,6 @@ export const SYSTEMS = [
     title: "Interfaces that run",
     body: "Small dashboards, utilities, and web tools built around actual workflows rather than demos.",
   },
-] as const;
-
-/**
- * Expertise — qualitative strengths across the domains this site covers.
- * `icon` maps to a lucide-react icon name rendered by expertise.tsx.
- */
-export const EXPERTISE = [
-  { label: "X-ray spectromicroscopy", depth: "active", note: "MANTiS · PCA/SVD · NNMA", icon: "ScanLine" },
-  { label: "Magnonics & spin dynamics", depth: "developing", note: "Arena lab context", icon: "Waves" },
-  { label: "Nix & reproducible packaging", depth: "strong", note: "flakes · dev shells", icon: "Package" },
-  { label: "Research automation", depth: "active", note: "agents · retrieval", icon: "Bot" },
-  { label: "Self-hosted infrastructure", depth: "active", note: "Hermes · Honcho", icon: "Server" },
-  { label: "Scientific Python", depth: "strong", note: "numpy · scipy · plotting", icon: "Braces" },
-] as const;
-
-export const TOOLING = [
-  "Python", "Nix", "TypeScript", "Next.js", "Prisma", "Linux",
-  "MANTiS", "NumPy/SciPy", "Socket.IO", "SQLite", "Framer Motion", "Tailwind",
 ] as const;
 
 export const PROJECTS = [
@@ -310,7 +290,6 @@ export const KEYBOARD_SHORTCUTS: {
   { combo: ["F"], label: "Focus mode", hint: "Keyboard section navigation" },
   { combo: ["G", "R"], label: "Go → Research", hint: "Vim-style section jump" },
   { combo: ["G", "S"], label: "Go → Systems", hint: "Vim-style section jump" },
-  { combo: ["G", "E"], label: "Go → Expertise", hint: "Vim-style section jump" },
   { combo: ["G", "P"], label: "Go → Projects", hint: "Vim-style section jump" },
   { combo: ["G", "N"], label: "Go → Notes", hint: "Vim-style section jump" },
   { combo: ["Esc"], label: "Close overlays", hint: "Dismiss palette / help" },
@@ -323,7 +302,6 @@ export const KEYBOARD_SHORTCUTS: {
 export const VIM_GO: Record<string, string> = {
   r: "#research",
   s: "#systems",
-  e: "#expertise",
   p: "#projects",
   j: "#journey",
   n: "#notes",
@@ -397,7 +375,6 @@ export const SEARCH_ITEMS: SearchItem[] = [
   // Sections
   { id: "sec-research", label: "Research", hint: "Dr. Arena lab work", group: "Sections", keywords: ["arena", "magnonics", "muon", "mantis", "spectromicroscopy", "xray", "spin"], action: "scroll", target: "#research" },
   { id: "sec-systems", label: "AI & Systems", hint: "Research infrastructure", group: "Sections", keywords: ["ai", "automation", "memory", "hermes", "honcho", "nix", "dashboards"], action: "scroll", target: "#systems" },
-  { id: "sec-expertise", label: "Expertise", hint: "Proficiency & tooling", group: "Sections", keywords: ["expertise", "skills", "proficiency", "python", "nix", "spectromicroscopy", "tooling"], action: "scroll", target: "#expertise" },
   { id: "sec-projects", label: "Projects", hint: "Public repos", group: "Sections", keywords: ["arbor", "magic", "yt-dlp", "peer", "discord", "repo", "github"], action: "scroll", target: "#projects" },
   { id: "sec-journey", label: "Journey", hint: "Timeline", group: "Sections", keywords: ["timeline", "history", "path", "now"], action: "scroll", target: "#journey" },
   { id: "sec-principles", label: "Principles", hint: "Build, verify, simplify", group: "Sections", keywords: ["principles", "rules", "philosophy"], action: "scroll", target: "#principles" },

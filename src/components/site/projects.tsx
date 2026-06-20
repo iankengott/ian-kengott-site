@@ -7,6 +7,8 @@ import { PROJECTS, PROJECT_FILTERS } from "@/lib/data";
 import { Reveal } from "./reveal";
 import { SpotlightCard } from "./spotlight-card";
 import { SectionHeading } from "./section-heading";
+import { GitHubActivity } from "./github-activity";
+import { ArborCycleSim } from "./arbor-cycle-sim";
 
 export function Projects() {
   const [filter, setFilter] = React.useState<string>("all");
@@ -21,7 +23,7 @@ export function Projects() {
       <Reveal className="flex flex-col gap-4 border-b border-border/60 pb-8 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="eyebrow mb-2 flex items-center gap-2">
-            <span className="sec-num">04</span>
+            <span className="sec-num">03</span>
             Selected Public Work
           </p>
           <SectionHeading id="projects" className="font-display text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
@@ -161,6 +163,10 @@ export function Projects() {
         </AnimatePresence>
       </motion.div>
 
+      <Reveal delay={0.08}>
+        <GitHubActivity />
+      </Reveal>
+
       {/* Arbor feature panel */}
       <Reveal as="article" delay={0.1} className="card-lift group corner-ornament relative mt-8 grid overflow-hidden rounded-2xl border border-border/70 bg-card/40 lg:grid-cols-[1fr_1.1fr]">
         <div className="corner-ornament-pair pointer-events-none absolute inset-0 z-20" aria-hidden>
@@ -203,6 +209,7 @@ export function Projects() {
               Project page <ArrowUpRight className="h-3 w-3" />
             </a>
           </div>
+          <ArborCycleSim />
         </div>
         <div className="relative z-10 border-t border-border/60 bg-background/40 p-7 lg:border-l lg:border-t-0">
           <div className="overflow-hidden rounded-xl border border-border/60 bg-card/40">
