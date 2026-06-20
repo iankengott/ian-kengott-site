@@ -19,12 +19,12 @@ export function FieldNotes() {
   const drafts = FIELD_NOTES.length - published;
 
   return (
-    <section id="notes" className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+    <section id="notes" className="mx-auto max-w-[1500px] px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
       <div className="rule-draw mb-10" aria-hidden />
       <Reveal className="flex flex-col gap-4 border-b border-border/60 pb-8 sm:flex-row sm:items-end sm:justify-between">
         <div className="max-w-2xl">
           <p className="eyebrow mb-2 flex items-center gap-2">
-            <span className="sec-num">05</span>
+            <span className="sec-num">04</span>
             <BookOpen className="h-3.5 w-3.5" />
             Field Notes
           </p>

@@ -14,7 +14,7 @@ const ICONS: Record<string, typeof Github> = {
 export function Connect() {
   return (
     <section id="connect" className="border-t border-border/60 bg-card/30">
-      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+      <div className="mx-auto max-w-[1500px] px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
           <Reveal>
             <p className="eyebrow mb-2">Connect</p>

@@ -101,7 +101,6 @@ function labelFor(id: string): string {
     research: "Research",
     systems: "AI & Systems",
     projects: "Projects",
-    journey: "Journey",
     notes: "Field Notes",
     principles: "Principles",
     connect: "Connect",

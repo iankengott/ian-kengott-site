@@ -16,6 +16,19 @@ export function AmbientBlochSphere() {
     let height = 0;
     let dpr = 1;
     let t = 0;
+    const particles = Array.from({ length: 72 }, (_, i) => {
+      const seed = Math.sin((i + 1) * 12.9898) * 43758.5453;
+      const n = seed - Math.floor(seed);
+      const seed2 = Math.sin((i + 5) * 78.233) * 24982.19;
+      const m = seed2 - Math.floor(seed2);
+      return {
+        x: n,
+        y: m,
+        r: 0.75 + ((i * 7) % 13) / 10,
+        speed: 0.18 + ((i * 11) % 17) / 90,
+        phase: i * 0.61,
+      };
+    });
 
     const resize = () => {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -38,6 +51,7 @@ export function AmbientBlochSphere() {
       const angle = t * 0.006 + scroll * 0.0015;
 
       ctx.clearRect(0, 0, width, height);
+      drawParticleField(ctx, particles, width, height, t, scroll, accent, muted);
       ctx.globalAlpha = 0.26;
 
       drawSphere(ctx, cx, cy, r, angle, accent, muted);
@@ -70,6 +84,65 @@ export function AmbientBlochSphere() {
       className="pointer-events-none fixed inset-0 z-0 opacity-80"
     />
   );
+}
+
+type Particle = {
+  x: number;
+  y: number;
+  r: number;
+  speed: number;
+  phase: number;
+};
+
+function drawParticleField(
+  ctx: CanvasRenderingContext2D,
+  particles: Particle[],
+  width: number,
+  height: number,
+  t: number,
+  scroll: number,
+  accent: string,
+  muted: string,
+) {
+  const points = particles.map((p, i) => {
+    const drift = t * p.speed + scroll * 0.055;
+    const x = (p.x * width + Math.sin(drift * 0.014 + p.phase) * 34 + width) % width;
+    const rawY = p.y * height + Math.cos(drift * 0.012 + p.phase) * 28 - scroll * (0.012 + (i % 5) * 0.002);
+    const y = ((rawY % height) + height) % height;
+    return { x, y, r: p.r };
+  });
+
+  ctx.save();
+  ctx.globalCompositeOperation = "screen";
+
+  for (let i = 0; i < points.length; i++) {
+    const a = points[i];
+    for (let j = i + 1; j < points.length; j++) {
+      const b = points[j];
+      const dx = a.x - b.x;
+      const dy = a.y - b.y;
+      const d = Math.hypot(dx, dy);
+      if (d > 112) continue;
+      const alpha = (1 - d / 112) * 0.09;
+      ctx.strokeStyle = color(i % 2 === 0 ? accent : muted, alpha);
+      ctx.lineWidth = 0.6;
+      ctx.beginPath();
+      ctx.moveTo(a.x, a.y);
+      ctx.lineTo(b.x, b.y);
+      ctx.stroke();
+    }
+  }
+
+  for (let i = 0; i < points.length; i++) {
+    const p = points[i];
+    const pulse = 0.55 + 0.45 * Math.sin(t * 0.025 + i);
+    ctx.fillStyle = color(i % 3 === 0 ? accent : muted, 0.16 + pulse * 0.12);
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r + pulse * 0.55, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  ctx.restore();
 }
 
 function drawSphere(

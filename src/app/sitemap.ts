@@ -34,12 +34,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${BASE}/#journey`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: "yearly",
-      priority: 0.6,
-    },
-    {
       url: `${BASE}/#connect`,
       lastModified: LAST_MODIFIED,
       changeFrequency: "yearly",

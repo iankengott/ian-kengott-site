@@ -9,7 +9,7 @@ import { PROFILE, CURRENTLY } from "@/lib/data";
 export function SessionStrip() {
   return (
     <section
-      className="mx-auto max-w-6xl px-4 py-16 sm:px-6"
+      className="mx-auto max-w-[1500px] px-5 py-16 sm:px-8 lg:px-12"
       aria-label="Research sessions"
     >
       <div className="glass relative overflow-hidden rounded-2xl border border-border/70 p-6 sm:p-8">

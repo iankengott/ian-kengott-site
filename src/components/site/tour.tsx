@@ -41,9 +41,6 @@ const STEP_NOTES: Record<string, { tip: string; tryHint?: string }> = {
     tip: "Public repos and experiments, filterable by category.",
     tryHint: "Try the filter chips — each shows a live count.",
   },
-  journey: {
-    tip: "A research path kept honest — running threads and the groundwork underneath.",
-  },
   notes: {
     tip: "Reading and research notes — PCA/SVD, ferrimagnets, Nix flakes, muon geometry.",
   },

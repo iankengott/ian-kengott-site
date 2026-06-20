@@ -41,7 +41,7 @@ export function SectionHeading({
   };
 
   return (
-    <h2 id={id} className={`group relative scroll-mt-20 ${className}`}>
+    <h2 id={`${id}-heading`} className={`group relative scroll-mt-20 ${className}`}>
       {children}
       <a
         href={`#${id}`}

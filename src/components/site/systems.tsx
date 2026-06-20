@@ -17,7 +17,7 @@ const ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
 export function Systems() {
   return (
     <section id="systems" className="border-y border-border/60 bg-card/30">
-      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+      <div className="mx-auto max-w-[1500px] px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
         <Reveal className="max-w-2xl">
           <p className="eyebrow mb-2 flex items-center gap-2">
             <span className="sec-num">02</span>

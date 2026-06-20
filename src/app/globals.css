@@ -48,51 +48,50 @@
 }
 
 /*
-  Scientific Atelier palette
-  - Warm paper / deep ink neutrals (no blue/indigo)
-  - Single signature accent: copper/amber (magnetic, warm, energy)
-  - Subtle jade used only as a cool counterpoint in field viz
+  Research-teal palette from the earlier static site.
+  Copper-named variables remain for component compatibility, but the accent
+  color is intentionally back to the previous teal/quantum-lab direction.
 */
 :root {
   --radius: 0.75rem;
   /* surfaces */
-  --background: oklch(0.985 0.008 80);       /* warm paper */
-  --foreground: oklch(0.21 0.012 60);        /* espresso ink */
-  --card: oklch(1 0.006 80);
-  --card-foreground: oklch(0.21 0.012 60);
-  --popover: oklch(1 0.006 80);
-  --popover-foreground: oklch(0.21 0.012 60);
-  --primary: oklch(0.24 0.015 55);
-  --primary-foreground: oklch(0.985 0.008 80);
-  --secondary: oklch(0.96 0.01 75);
-  --secondary-foreground: oklch(0.24 0.015 55);
-  --muted: oklch(0.955 0.01 75);
-  --muted-foreground: oklch(0.5 0.012 65);
-  --accent: oklch(0.95 0.025 70);
-  --accent-foreground: oklch(0.3 0.05 55);
+  --background: #f5f7f6;
+  --foreground: #101714;
+  --card: #ffffff;
+  --card-foreground: #101714;
+  --popover: #ffffff;
+  --popover-foreground: #101714;
+  --primary: #101f1b;
+  --primary-foreground: #eef7f4;
+  --secondary: #eef7f4;
+  --secondary-foreground: #101f1b;
+  --muted: #eef7f4;
+  --muted-foreground: #5e6b66;
+  --accent: #dff3ef;
+  --accent-foreground: #0b4c45;
   --destructive: oklch(0.58 0.2 28);
-  --border: oklch(0.9 0.012 75);
-  --input: oklch(0.9 0.012 75);
-  --ring: oklch(0.62 0.13 55);
+  --border: #d9e2de;
+  --input: #d9e2de;
+  --ring: #0f766e;
   /* signature accent */
-  --copper: oklch(0.52 0.14 50);              /* copper/amber, darkened for light-mode contrast */
-  --copper-foreground: oklch(0.99 0.008 80);
-  --jade: oklch(0.5 0.08 165);              /* muted sage */
+  --copper: #0f766e;
+  --copper-foreground: #ffffff;
+  --jade: #68d8c9;
   /* charts */
-  --chart-1: oklch(0.6 0.13 52);
-  --chart-2: oklch(0.55 0.08 165);
-  --chart-3: oklch(0.5 0.06 70);
-  --chart-4: oklch(0.65 0.1 35);
-  --chart-5: oklch(0.45 0.04 55);
+  --chart-1: #0f766e;
+  --chart-2: #68d8c9;
+  --chart-3: #0b4c45;
+  --chart-4: #5e6b66;
+  --chart-5: #113a33;
   /* sidebar */
-  --sidebar: oklch(0.985 0.008 80);
-  --sidebar-foreground: oklch(0.21 0.012 60);
-  --sidebar-primary: oklch(0.24 0.015 55);
-  --sidebar-primary-foreground: oklch(0.985 0.008 80);
-  --sidebar-accent: oklch(0.95 0.025 70);
-  --sidebar-accent-foreground: oklch(0.3 0.05 55);
-  --sidebar-border: oklch(0.9 0.012 75);
-  --sidebar-ring: oklch(0.62 0.13 55);
+  --sidebar: #f5f7f6;
+  --sidebar-foreground: #101714;
+  --sidebar-primary: #101f1b;
+  --sidebar-primary-foreground: #eef7f4;
+  --sidebar-accent: #dff3ef;
+  --sidebar-accent-foreground: #0b4c45;
+  --sidebar-border: #d9e2de;
+  --sidebar-ring: #0f766e;
 
   /* signatures */
   --grain-opacity: 0.035;
@@ -100,42 +99,42 @@
 }
 
 .dark {
-  --background: oklch(0.16 0.008 60);        /* warm night */
-  --foreground: oklch(0.95 0.01 80);
-  --card: oklch(0.2 0.01 60);
-  --card-foreground: oklch(0.95 0.01 80);
-  --popover: oklch(0.2 0.01 60);
-  --popover-foreground: oklch(0.95 0.01 80);
-  --primary: oklch(0.93 0.01 80);
-  --primary-foreground: oklch(0.18 0.01 60);
-  --secondary: oklch(0.25 0.01 60);
-  --secondary-foreground: oklch(0.95 0.01 80);
-  --muted: oklch(0.24 0.01 60);
-  --muted-foreground: oklch(0.68 0.012 70);
-  --accent: oklch(0.28 0.03 55);
-  --accent-foreground: oklch(0.92 0.04 70);
+  --background: #07110f;
+  --foreground: #eef7f4;
+  --card: #0e1d19;
+  --card-foreground: #eef7f4;
+  --popover: #0e1d19;
+  --popover-foreground: #eef7f4;
+  --primary: #eef7f4;
+  --primary-foreground: #04201c;
+  --secondary: #102720;
+  --secondary-foreground: #eef7f4;
+  --muted: #102720;
+  --muted-foreground: #a8bbb4;
+  --accent: #113a33;
+  --accent-foreground: #9be7da;
   --destructive: oklch(0.7 0.19 24);
-  --border: oklch(1 0 0 / 9%);
-  --input: oklch(1 0 0 / 13%);
-  --ring: oklch(0.7 0.13 55);
-  --copper: oklch(0.72 0.14 58);             /* glowing copper */
-  --copper-foreground: oklch(0.16 0.01 60);
-  --jade: oklch(0.68 0.09 165);
+  --border: #1e3832;
+  --input: #1e3832;
+  --ring: #68d8c9;
+  --copper: #68d8c9;
+  --copper-foreground: #04201c;
+  --jade: #9be7da;
 
-  --chart-1: oklch(0.72 0.14 58);
-  --chart-2: oklch(0.68 0.09 165);
-  --chart-3: oklch(0.7 0.08 70);
-  --chart-4: oklch(0.74 0.12 35);
-  --chart-5: oklch(0.6 0.05 55);
+  --chart-1: #68d8c9;
+  --chart-2: #9be7da;
+  --chart-3: #113a33;
+  --chart-4: #1e3832;
+  --chart-5: #a8bbb4;
 
-  --sidebar: oklch(0.18 0.01 60);
-  --sidebar-foreground: oklch(0.95 0.01 80);
-  --sidebar-primary: oklch(0.93 0.01 80);
-  --sidebar-primary-foreground: oklch(0.18 0.01 60);
-  --sidebar-accent: oklch(0.28 0.03 55);
-  --sidebar-accent-foreground: oklch(0.92 0.04 70);
-  --sidebar-border: oklch(1 0 0 / 9%);
-  --sidebar-ring: oklch(0.7 0.13 55);
+  --sidebar: #07110f;
+  --sidebar-foreground: #eef7f4;
+  --sidebar-primary: #eef7f4;
+  --sidebar-primary-foreground: #04201c;
+  --sidebar-accent: #113a33;
+  --sidebar-accent-foreground: #9be7da;
+  --sidebar-border: #1e3832;
+  --sidebar-ring: #68d8c9;
 
   --grain-opacity: 0.05;
   --field-glow: 1;
@@ -470,13 +469,13 @@ section[id] {
   height: 30px;
 }
 
-/* ---------- Rotating copper border ring (hero profile card) ---------- */
+/* ---------- Static hero profile card ---------- */
 .profile-ring {
   position: relative;
   isolation: isolate;
 }
 .profile-ring::before {
-  content: "";
+  content: none;
   position: absolute;
   inset: -1.5px;
   border-radius: inherit;
@@ -497,16 +496,15 @@ section[id] {
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   opacity: 1;
-  animation: profile-ring-rotate 18s linear infinite;
+  animation: none;
   pointer-events: none;
   z-index: 0;
 }
 @keyframes profile-ring-rotate {
   to { transform: rotate(360deg); }
 }
-/* Pause the rotating ring when the hero is off-screen (perf). */
 .profile-ring.ring-paused::before {
-  animation-play-state: paused;
+  animation: none;
 }
 
 /* ---------- Oversized pull-quote mark ---------- */
@@ -544,29 +542,6 @@ section[id] {
 }
 .chip-lift:hover::after {
   width: 60%;
-}
-
-/* ---------- Timeline node hover burst ---------- */
-.tl-node {
-  position: relative;
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.tl-node::after {
-  content: "";
-  position: absolute;
-  inset: -6px;
-  border-radius: 9999px;
-  border: 1px solid color-mix(in oklch, var(--copper) 40%, transparent);
-  opacity: 0;
-  transform: scale(0.6);
-  transition: opacity 0.35s ease, transform 0.35s ease;
-}
-.group:hover .tl-node {
-  transform: scale(1.4);
-}
-.group:hover .tl-node::after {
-  opacity: 1;
-  transform: scale(1);
 }
 
 /* ---------- Palette match highlight ---------- */
@@ -623,152 +598,6 @@ mark.palette-mark {
     color-mix(in oklch, var(--copper) 32%, transparent),
     transparent 72%
   );
-}
-
-/* ---------- Timeline: 3D node glow + spine glow + year/tag treatment ---------- */
-/* The spine uses a copper-tinted gradient with a soft animated glow that
-   travels top→bottom on a slow loop, evoking a signal trace. */
-.tl-spine {
-  background: linear-gradient(
-    to bottom,
-    color-mix(in oklch, var(--copper) 70%, transparent) 0%,
-    color-mix(in oklch, var(--copper) 30%, transparent) 25%,
-    var(--border) 60%,
-    transparent 100%
-  );
-}
-.tl-spine::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: -10%;
-  width: 100%;
-  height: 18%;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    color-mix(in oklch, var(--copper) 80%, transparent),
-    transparent
-  );
-  filter: blur(3px);
-  opacity: 0.7;
-  animation: tl-spine-trace 6s ease-in-out infinite;
-}
-@keyframes tl-spine-trace {
-  0%   { transform: translateY(0); opacity: 0; }
-  15%  { opacity: 0.8; }
-  85%  { opacity: 0.8; }
-  100% { transform: translateY(620%); opacity: 0; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .tl-spine::after { animation: none; display: none; }
-}
-
-/* Node marker — a "3D" copper sphere with specular highlight + hover ring burst */
-.tl-node {
-  position: relative;
-  background: radial-gradient(
-    circle at 35% 30%,
-    color-mix(in oklch, var(--copper) 95%, white 25%) 0%,
-    var(--copper) 45%,
-    color-mix(in oklch, var(--copper) 55%, black 25%) 100%
-  );
-  box-shadow:
-    0 0 0 1px color-mix(in oklch, var(--copper) 40%, transparent),
-    0 1px 3px rgba(0,0,0,0.3),
-    0 0 12px -2px color-mix(in oklch, var(--copper) 70%, transparent);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.group:hover .tl-node {
-  transform: scale(1.35);
-  box-shadow:
-    0 0 0 2px color-mix(in oklch, var(--copper) 60%, transparent),
-    0 0 18px 0 color-mix(in oklch, var(--copper) 80%, transparent);
-}
-.tl-node-burst {
-  position: absolute;
-  inset: -6px;
-  border-radius: 9999px;
-  border: 1px solid color-mix(in oklch, var(--copper) 50%, transparent);
-  opacity: 0;
-  transition: opacity 0.3s ease, transform 0.5s ease;
-}
-.group:hover .tl-node-burst {
-  opacity: 1;
-  transform: scale(1.6);
-}
-
-/* Year label — copper underline accent on hover */
-.tl-year {
-  position: relative;
-  display: inline-block;
-}
-.tl-year::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 0;
-  height: 1px;
-  background: var(--copper);
-  transition: width 0.3s ease;
-}
-.group:hover .tl-year::after { width: 100%; }
-
-/* Tag pill — copper-tinted on hover with subtle bg */
-.tl-tag {
-  transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
-}
-.group:hover .tl-tag {
-  border-color: color-mix(in oklch, var(--copper) 50%, transparent);
-  background-color: color-mix(in oklch, var(--copper) 12%, transparent);
-}
-
-/* Status badge — color-coded by status type (now/active/ongoing/earlier) */
-.tl-status {
-  transition: border-color 0.3s ease, background-color 0.3s ease;
-}
-.tl-status-now {
-  border-color: color-mix(in oklch, var(--copper) 70%, transparent);
-  background: color-mix(in oklch, var(--copper) 22%, transparent);
-  color: var(--copper);
-  box-shadow: 0 0 14px -4px color-mix(in oklch, var(--copper) 60%, transparent);
-}
-.tl-status-now::before {
-  content: "";
-  display: inline-block;
-  width: 5px;
-  height: 5px;
-  border-radius: 9999px;
-  background: var(--copper);
-  margin-right: 4px;
-  animation: status-pulse 1.8s ease-in-out infinite;
-}
-.tl-status-active {
-  border-color: color-mix(in oklch, var(--copper) 50%, transparent);
-  background: color-mix(in oklch, var(--copper) 12%, transparent);
-  color: color-mix(in oklch, var(--copper) 90%, var(--foreground));
-}
-.tl-status-ongoing {
-  border-style: dashed;
-  border-color: color-mix(in oklch, var(--copper) 45%, transparent);
-  background: transparent;
-  color: color-mix(in oklch, var(--copper) 80%, var(--foreground));
-}
-.tl-status-earlier {
-  border-color: var(--border);
-  background: color-mix(in oklch, var(--muted) 30%, transparent);
-  color: var(--muted-foreground);
-}
-@keyframes spin-slow {
-  to { transform: rotate(360deg); }
-}
-.animate-spin-slow {
-  animation: spin-slow 6s linear infinite;
-}
-@media (prefers-reduced-motion: reduce) {
-  .animate-spin-slow { animation: none; }
-  .tl-status-now::before { animation: none; }
 }
 
 /* ---------- Research: lens tab + screenshot frame polish ---------- */
@@ -1022,19 +851,61 @@ mark.palette-mark {
   color: var(--muted-foreground);
   transition: color 0.25s ease, border-color 0.25s ease;
 }
-.filter-ch:hover {
+.filter-chip:hover {
   color: var(--foreground);
   border-color: color-mix(in oklch, var(--copper) 40%, transparent);
 }
-.filter-ch[data-active="true"] {
+.filter-chip[data-active="true"] {
   color: var(--copper-foreground);
   border-color: var(--copper);
 }
-.filter-ch-count {
+.filter-chip-count {
   margin-left: 0.45rem;
   font-family: var(--font-geist-mono), monospace;
   font-size: 0.625rem;
   opacity: 0.7;
+}
+
+.project-carousel {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklch, var(--copper) 50%, transparent) transparent;
+  scroll-padding-inline: 0.25rem;
+}
+.project-carousel::-webkit-scrollbar {
+  height: 8px;
+}
+.project-carousel::-webkit-scrollbar-track {
+  background: transparent;
+}
+.project-carousel::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+  background: color-mix(in oklch, var(--copper) 35%, transparent);
+}
+.project-slide {
+  flex: 0 0 auto;
+}
+.carousel-button {
+  display: inline-flex;
+  width: 2.35rem;
+  height: 2.35rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in oklch, var(--border) 85%, transparent);
+  border-radius: 9999px;
+  background: color-mix(in oklch, var(--card) 62%, transparent);
+  color: var(--foreground);
+  transition:
+    transform 0.18s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+.carousel-button:hover {
+  border-color: color-mix(in oklch, var(--copper) 55%, transparent);
+  color: var(--copper);
+}
+.carousel-button:active {
+  transform: scale(0.94);
 }
 
 /* ---------- Vim `g` arming hint ---------- */
@@ -1323,28 +1194,6 @@ h2:hover .section-anchor {
   transform: translateY(-1px) rotate(-3deg);
   border-color: color-mix(in oklch, var(--copper) 60%, transparent);
   background: color-mix(in oklch, var(--copper) 16%, transparent);
-}
-
-/* ---------- Timeline node ordinal ---------- */
-.tl-ord {
-  position: absolute;
-  left: -3.25rem;
-  top: -0.15rem;
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.1em;
-  color: color-mix(in oklch, var(--copper) 60%, var(--muted-foreground));
-  opacity: 0;
-  transform: translateX(6px);
-  transition: opacity 0.35s ease, transform 0.35s ease, color 0.35s ease;
-}
-.group:hover .tl-ord {
-  opacity: 1;
-  transform: translateX(0);
-  color: var(--copper);
-}
-@media (max-width: 639px) {
-  .tl-ord { display: none; }
 }
 
 /* ---------- Keyboard key styling (shortcuts overlay) ---------- */

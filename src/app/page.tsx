@@ -6,7 +6,6 @@ import { SessionStrip } from "@/components/site/session-strip";
 import { Research } from "@/components/site/research";
 import { Systems } from "@/components/site/systems";
 import { Projects } from "@/components/site/projects";
-import { Timeline } from "@/components/site/timeline";
 import { FieldNotes } from "@/components/site/field-notes";
 import { Principles } from "@/components/site/principles";
 import { Connect } from "@/components/site/connect";
@@ -38,7 +37,6 @@ export default function Home() {
             <AtelierDivider />
             <Systems />
             <Projects />
-            <Timeline />
             <AtelierDivider />
             <FieldNotes />
             <Principles />

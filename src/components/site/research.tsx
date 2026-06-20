@@ -10,7 +10,7 @@ import { SpectralDecomposition } from "./spectral-decomposition";
 
 export function Research() {
   return (
-    <section id="research" className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+    <section id="research" className="mx-auto max-w-[1500px] px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
       <SectionHead />
       <Summary />
       <LensSelector />

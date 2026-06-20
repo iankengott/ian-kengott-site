@@ -19,7 +19,7 @@ const MARQUEE_ITEMS = [
 export function Stats() {
   return (
     <section className="relative border-y border-border/60 bg-card/30">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="mx-auto max-w-[1500px] px-5 sm:px-8 lg:px-12">
         <div className="grid grid-cols-2 divide-x divide-y divide-border/60 sm:grid-cols-4 sm:divide-y-0">
           {STATS.map((s, i) => (
             <motion.div

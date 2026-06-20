@@ -2,24 +2,38 @@
 
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Star, GitFork, FileCode2, GitBranch } from "lucide-react";
+import { ArrowUpRight, Star, GitFork, FileCode2, GitBranch, ChevronLeft, ChevronRight, PlayCircle } from "lucide-react";
 import { PROJECTS, PROJECT_FILTERS } from "@/lib/data";
 import { Reveal } from "./reveal";
 import { SpotlightCard } from "./spotlight-card";
 import { SectionHeading } from "./section-heading";
 import { GitHubActivity } from "./github-activity";
-import { ArborCycleSim } from "./arbor-cycle-sim";
+
+const ARBOR_DEMO =
+  "https://raw.githubusercontent.com/RUC-NLPIR/Arbor/main/assets/demo.mp4";
+const ARBOR_POSTER =
+  "https://raw.githubusercontent.com/RUC-NLPIR/Arbor/main/assets/demo-poster.png";
 
 export function Projects() {
   const [filter, setFilter] = React.useState<string>("all");
+  const carouselRef = React.useRef<HTMLDivElement | null>(null);
 
   const visible = PROJECTS.filter((p) =>
     filter === "all" ? true : p.categories.includes(filter)
   );
   const arbor = PROJECTS.find((p) => p.name === "Arbor")!;
 
+  const scrollProjects = (direction: -1 | 1) => {
+    const el = carouselRef.current;
+    if (!el) return;
+    el.scrollBy({
+      left: direction * Math.min(window.innerWidth * 0.82, 560),
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <section id="projects" className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+    <section id="projects" className="mx-auto max-w-[1500px] px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
       <Reveal className="flex flex-col gap-4 border-b border-border/60 pb-8 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="eyebrow mb-2 flex items-center gap-2">
@@ -41,41 +55,65 @@ export function Projects() {
         </a>
       </Reveal>
 
-      <Reveal delay={0.05} className="mt-8 flex flex-wrap items-center gap-2">
-        <span className="mr-1 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/70">
-          Filter
-        </span>
-        {PROJECT_FILTERS.map((f) => {
-          const isActive = f.id === filter;
-          const count =
-            f.id === "all"
-              ? PROJECTS.length
-              : PROJECTS.filter((p) => p.categories.includes(f.id)).length;
-          return (
-            <button
-              key={f.id}
-              data-active={isActive}
-              aria-pressed={isActive}
-              onClick={() => setFilter(f.id)}
-              className="filter-chip relative"
-            >
-              {isActive && (
-                <motion.span
-                  layoutId="filter-pill"
-                  className="absolute inset-0 -z-10 rounded-full bg-[var(--copper)]"
-                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                />
-              )}
-              {f.label}
-              <span className="filter-chip-count" aria-hidden>
-                {String(count).padStart(2, "0")}
-              </span>
-            </button>
-          );
-        })}
+      <Reveal delay={0.05} className="mt-8 flex flex-wrap items-center justify-between gap-4">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="mr-1 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/70">
+            Filter
+          </span>
+          {PROJECT_FILTERS.map((f) => {
+            const isActive = f.id === filter;
+            const count =
+              f.id === "all"
+                ? PROJECTS.length
+                : PROJECTS.filter((p) => p.categories.includes(f.id)).length;
+            return (
+              <button
+                key={f.id}
+                data-active={isActive}
+                aria-pressed={isActive}
+                onClick={() => setFilter(f.id)}
+                className="filter-chip relative"
+              >
+                {isActive && (
+                  <motion.span
+                    layoutId="filter-pill"
+                    className="absolute inset-0 -z-10 rounded-full bg-[var(--copper)]"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+                {f.label}
+                <span className="filter-chip-count" aria-hidden>
+                  {String(count).padStart(2, "0")}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+        <div className="flex items-center gap-2" aria-label="Project carousel controls">
+          <button
+            type="button"
+            onClick={() => scrollProjects(-1)}
+            className="carousel-button"
+            aria-label="Scroll projects left"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollProjects(1)}
+            className="carousel-button"
+            aria-label="Scroll projects right"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        </div>
       </Reveal>
 
-      <motion.div layout className="mt-8 grid gap-4 sm:grid-cols-2">
+      <motion.div
+        ref={carouselRef}
+        layout
+        className="project-carousel mt-8 flex snap-x gap-4 overflow-x-auto pb-4"
+      >
         <AnimatePresence mode="popLayout">
           {visible.map((p) => (
             <motion.div
@@ -85,20 +123,19 @@ export function Projects() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.96 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="project-slide min-w-[min(88vw,30rem)] snap-start sm:min-w-[27rem] lg:min-w-[31rem]"
             >
               <SpotlightCard className="h-full rounded-2xl">
                 <a
                   href={p.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="project-card card-lift group relative flex h-full flex-col gap-3 overflow-hidden rounded-2xl border border-border/70 bg-card/40 p-6"
+                  className="project-card card-lift group relative flex h-full min-h-[18rem] flex-col gap-3 overflow-hidden rounded-2xl border border-border/70 bg-card/40 p-6"
                 >
-                  {/* accent corner mark — top-right copper L-bracket */}
                   <span className="project-corner" aria-hidden />
 
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex items-center gap-2.5">
-                      {/* repo icon disc */}
                       <span className="project-repo-icon" aria-hidden>
                         <GitBranch className="h-3.5 w-3.5" />
                       </span>
@@ -113,7 +150,6 @@ export function Projects() {
                     {p.blurb}
                   </p>
 
-                  {/* tech stack chips */}
                   <div className="flex flex-wrap gap-1.5">
                     {p.stack.map((tech) => (
                       <span
@@ -125,7 +161,6 @@ export function Projects() {
                     ))}
                   </div>
 
-                  {/* category + language + meta footer */}
                   <div className="mt-auto flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-border/50 pt-3">
                     <span className="inline-flex items-center gap-1.5">
                       <span
@@ -163,12 +198,17 @@ export function Projects() {
         </AnimatePresence>
       </motion.div>
 
+      {/*
+        The card carousel above replaces the old vertical repo grid.
+        GitHubActivity remains a live-data panel because it is more useful full-width.
+      */}
+
       <Reveal delay={0.08}>
         <GitHubActivity />
       </Reveal>
 
       {/* Arbor feature panel */}
-      <Reveal as="article" delay={0.1} className="card-lift group corner-ornament relative mt-8 grid overflow-hidden rounded-2xl border border-border/70 bg-card/40 lg:grid-cols-[1fr_1.1fr]">
+      <Reveal as="article" delay={0.1} className="card-lift group corner-ornament relative mt-8 grid overflow-hidden rounded-2xl border border-border/70 bg-card/40 lg:grid-cols-[0.85fr_1.15fr]">
         <div className="corner-ornament-pair pointer-events-none absolute inset-0 z-20" aria-hidden>
           <span />
           <span />
@@ -176,12 +216,13 @@ export function Projects() {
         <div className="relative z-10 flex flex-col gap-4 p-7 sm:p-9">
           <p className="eyebrow">Arbor / Public Repo Evidence</p>
           <h3 className="font-display text-2xl font-semibold tracking-tight text-balance">
-            My Arbor fork is grounded in reproducible research runs.
+            My Arbor fork stays tied to the public upstream research workflow.
           </h3>
           <p className="leading-relaxed text-muted-foreground">
             Public GitHub metadata describes my fork as a cleaner Python package
             layout with local setup and a Nix-based simulation scaffold for
-            reproducible experiment workflows.
+            reproducible experiment workflows. The video here is the upstream
+            Arbor demo asset, not a synthetic stand-in.
           </p>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
             <a
@@ -209,18 +250,7 @@ export function Projects() {
               Project page <ArrowUpRight className="h-3 w-3" />
             </a>
           </div>
-          <ArborCycleSim />
-        </div>
-        <div className="relative z-10 border-t border-border/60 bg-background/40 p-7 lg:border-l lg:border-t-0">
-          <div className="overflow-hidden rounded-xl border border-border/60 bg-card/40">
-            <img
-              src="/ian-kengott-site/img/arbor-framework.png"
-              alt="Arbor framework diagram from the public Arbor repository"
-              className="block w-full"
-              loading="lazy"
-            />
-          </div>
-          <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-2">
+          <div className="grid grid-cols-2 gap-3">
             {[
               { icon: FileCode2, label: "Python", note: "primary language" },
               { icon: Star, label: "Apache-2.0", note: "license" },
@@ -240,6 +270,33 @@ export function Projects() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+        <div className="relative z-10 border-t border-border/60 bg-background/40 p-5 sm:p-7 lg:border-l lg:border-t-0">
+          <div className="overflow-hidden rounded-xl border border-border/60 bg-card/40 shadow-[0_30px_90px_-60px_var(--copper)]">
+            <video
+              className="block aspect-video w-full bg-black object-cover"
+              controls
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              poster={ARBOR_POSTER}
+            >
+              <source src={ARBOR_DEMO} type="video/mp4" />
+            </video>
+          </div>
+          <p className="mt-3 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+            <PlayCircle className="h-3.5 w-3.5 text-[var(--copper)]" />
+            Upstream Arbor demo media from RUC-NLPIR/Arbor
+          </p>
+          <div className="mt-5 overflow-hidden rounded-xl border border-border/60 bg-card/40">
+            <img
+              src="/ian-kengott-site/img/arbor-framework.png"
+              alt="Arbor framework diagram from the public Arbor repository"
+              className="block w-full"
+              loading="lazy"
+            />
           </div>
         </div>
       </Reveal>

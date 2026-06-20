@@ -1,6 +1,6 @@
 :HL["/ian-kengott-site/_next/static/chunks/ff5cf8e3de262f36.css","style"]
-:HL["/ian-kengott-site/_next/static/chunks/c8863f13b7f50e45.css","style"]
+:HL["/ian-kengott-site/_next/static/chunks/42f48f8bf3d948cd.css","style"]
 :HL["/ian-kengott-site/_next/static/media/54fc36028e2bb174-s.p.a3b6b797.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/ian-kengott-site/_next/static/media/797e433ab948586e-s.p.29207c2f.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/ian-kengott-site/_next/static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-0:{"buildId":"GGPO77iQjo4GmDyfGYQsf","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
+0:{"buildId":"BSNEUFn_y-yyH_ShiSHFx","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true},"staleTime":300}

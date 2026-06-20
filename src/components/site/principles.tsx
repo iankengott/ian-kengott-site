@@ -24,11 +24,11 @@ const ICONS: Record<string, LucideIcon> = {
 
 export function Principles() {
   return (
-    <section id="principles" className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+    <section id="principles" className="mx-auto max-w-[1500px] px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
       <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
         <Reveal>
           <p className="eyebrow mb-2 flex items-center gap-2">
-            <span className="sec-num">06</span>
+            <span className="sec-num">05</span>
             Principles
           </p>
           <SectionHeading id="principles" className="font-display text-3xl font-semibold tracking-tight text-balance sm:text-4xl">

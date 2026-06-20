@@ -83,7 +83,7 @@ export function Hero() {
         <span />
       </div>
 
-      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:gap-10">
+      <div className="mx-auto grid max-w-[1500px] grid-cols-1 items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12 lg:px-12">
         {/* Copy */}
         <div>
           <motion.p

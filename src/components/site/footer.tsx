@@ -10,7 +10,7 @@ export function Footer() {
       {/* Copper accent rule at the very top of the footer */}
       <div className="footer-rule" aria-hidden />
 
-      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-8 sm:px-6 md:flex-row md:items-center md:justify-between">
+      <div className="mx-auto flex max-w-[1500px] flex-col gap-6 px-5 py-8 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-12">
         <div className="flex items-center gap-3">
           {/* Branding mark */}
           <span className="footer-brand" aria-hidden>

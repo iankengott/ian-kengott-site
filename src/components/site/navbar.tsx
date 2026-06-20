@@ -109,7 +109,7 @@ export function Navbar() {
       className="fixed inset-x-0 top-0 z-50"
     >
       <div
-        className={`mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 transition-all duration-300 sm:px-6 ${
+        className={`mx-auto flex h-16 max-w-[1500px] items-center justify-between gap-4 px-5 transition-all duration-300 sm:px-8 lg:px-12 ${
           scrolled
             ? "mt-2 rounded-full border border-border/70 bg-card/70 px-4 backdrop-blur-xl sm:px-4"
             : "border border-transparent"
