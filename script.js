@@ -98,6 +98,28 @@ document.querySelectorAll(".filter-chip").forEach((button) => {
   });
 });
 
+document.querySelectorAll(".research-detail").forEach((detail) => {
+  const summary = detail.querySelector("summary");
+  if (!summary) return;
+
+  summary.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    if (detail.classList.contains("is-closing")) return;
+
+    if (detail.open) {
+      detail.classList.add("is-closing");
+      window.setTimeout(() => {
+        detail.open = false;
+        detail.classList.remove("is-closing");
+      }, 180);
+      return;
+    }
+
+    detail.open = true;
+  });
+});
+
 const revealTargets = document.querySelectorAll(
   ".session-strip, .section, .feature, .card, .project, .arbor-panel, .lens-output"
 );
