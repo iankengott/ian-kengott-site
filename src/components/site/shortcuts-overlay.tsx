@@ -55,7 +55,7 @@ export function ShortcutsOverlay() {
     };
 
     const onKey = (e: KeyboardEvent) => {
-      // Never intercept combos with meta/ctrl/alt (⌘K etc. handled elsewhere).
+      // Never intercept combos with meta/ctrl/alt.
       if (e.metaKey || e.ctrlKey || e.altKey) return;
       // Skip when typing in a form field.
       if (isTyping()) return;

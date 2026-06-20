@@ -16,7 +16,7 @@ export function AmbientBlochSphere() {
     let height = 0;
     let dpr = 1;
     let t = 0;
-    const particles = Array.from({ length: 72 }, (_, i) => {
+    const particles = Array.from({ length: 56 }, (_, i) => {
       const seed = Math.sin((i + 1) * 12.9898) * 43758.5453;
       const n = seed - Math.floor(seed);
       const seed2 = Math.sin((i + 5) * 78.233) * 24982.19;
@@ -25,7 +25,7 @@ export function AmbientBlochSphere() {
         x: n,
         y: m,
         r: 0.75 + ((i * 7) % 13) / 10,
-        speed: 0.18 + ((i * 11) % 17) / 90,
+        speed: 0.035 + ((i * 11) % 17) / 260,
         phase: i * 0.61,
       };
     });
@@ -46,9 +46,9 @@ export function AmbientBlochSphere() {
       const accent = getComputedStyle(document.documentElement).getPropertyValue("--copper").trim() || "#ad6a2d";
       const muted = getComputedStyle(document.documentElement).getPropertyValue("--jade").trim() || "#6f8d7e";
       const cx = width * 0.78;
-      const cy = height * (0.34 + 0.08 * Math.sin(scroll * 0.0012));
+      const cy = height * (0.34 + 0.035 * Math.sin(scroll * 0.00035));
       const r = Math.min(width, height) * 0.18;
-      const angle = t * 0.006 + scroll * 0.0015;
+      const angle = t * 0.0007 + scroll * 0.0002;
 
       ctx.clearRect(0, 0, width, height);
       drawParticleField(ctx, particles, width, height, t, scroll, accent, muted);
@@ -60,7 +60,7 @@ export function AmbientBlochSphere() {
       drawSphere(ctx, width * 0.14, height * 0.72, r * 0.72, -angle * 0.7, muted, accent);
       ctx.globalAlpha = 1;
 
-      t += reduce ? 0 : 1;
+      t += reduce ? 0 : 0.18;
       if (!reduce) raf = requestAnimationFrame(draw);
     };
 
@@ -105,9 +105,9 @@ function drawParticleField(
   muted: string,
 ) {
   const points = particles.map((p, i) => {
-    const drift = t * p.speed + scroll * 0.055;
-    const x = (p.x * width + Math.sin(drift * 0.014 + p.phase) * 34 + width) % width;
-    const rawY = p.y * height + Math.cos(drift * 0.012 + p.phase) * 28 - scroll * (0.012 + (i % 5) * 0.002);
+    const drift = t * p.speed + scroll * 0.006;
+    const x = (p.x * width + Math.sin(drift * 0.01 + p.phase) * 18 + width) % width;
+    const rawY = p.y * height + Math.cos(drift * 0.008 + p.phase) * 14 - scroll * (0.002 + (i % 5) * 0.0004);
     const y = ((rawY % height) + height) % height;
     return { x, y, r: p.r };
   });
@@ -135,7 +135,7 @@ function drawParticleField(
 
   for (let i = 0; i < points.length; i++) {
     const p = points[i];
-    const pulse = 0.55 + 0.45 * Math.sin(t * 0.025 + i);
+    const pulse = 0.55 + 0.45 * Math.sin(t * 0.006 + i);
     ctx.fillStyle = color(i % 3 === 0 ? accent : muted, 0.16 + pulse * 0.12);
     ctx.beginPath();
     ctx.arc(p.x, p.y, p.r + pulse * 0.55, 0, Math.PI * 2);

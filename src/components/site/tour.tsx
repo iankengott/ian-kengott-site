@@ -41,15 +41,6 @@ const STEP_NOTES: Record<string, { tip: string; tryHint?: string }> = {
     tip: "Public repos and experiments, filterable by category.",
     tryHint: "Try the filter chips — each shows a live count.",
   },
-  notes: {
-    tip: "Reading and research notes — PCA/SVD, ferrimagnets, Nix flakes, muon geometry.",
-  },
-  principles: {
-    tip: "The operating rules: build, verify, simplify.",
-  },
-  connect: {
-    tip: "Public links for GitHub, the research session index, and the USF lab page.",
-  },
 };
 
 export function TourProvider({ children }: { children: React.ReactNode }) {

@@ -18,9 +18,6 @@ export const NAV_LINKS = [
   { label: "Research", href: "#research" },
   { label: "Systems", href: "#systems" },
   { label: "Projects", href: "#projects" },
-  { label: "Notes", href: "#notes" },
-  { label: "Principles", href: "#principles" },
-  { label: "Connect", href: "#connect" },
 ];
 
 /**
@@ -33,9 +30,6 @@ export const SECTION_META: Record<string, { readTime: number; label: string }> =
   research: { readTime: 3, label: "Research" },
   systems: { readTime: 2, label: "AI & Systems" },
   projects: { readTime: 3, label: "Projects" },
-  notes: { readTime: 3, label: "Field Notes" },
-  principles: { readTime: 2, label: "Principles" },
-  connect: { readTime: 1, label: "Connect" },
 };
 
 export const STATS = [
@@ -281,7 +275,6 @@ export const KEYBOARD_SHORTCUTS: {
   label: string;
   hint: string;
 }[] = [
-  { combo: ["⌘", "K"], label: "Command palette", hint: "Search & jump to anything" },
   { combo: ["?"], label: "This help", hint: "Toggle the shortcuts overlay" },
   { combo: ["T"], label: "Toggle theme", hint: "Light ↔ dark" },
   { combo: ["B"], label: "Back to top", hint: "Smooth-scroll to the hero" },
@@ -289,8 +282,7 @@ export const KEYBOARD_SHORTCUTS: {
   { combo: ["G", "R"], label: "Go → Research", hint: "Vim-style section jump" },
   { combo: ["G", "S"], label: "Go → Systems", hint: "Vim-style section jump" },
   { combo: ["G", "P"], label: "Go → Projects", hint: "Vim-style section jump" },
-  { combo: ["G", "N"], label: "Go → Notes", hint: "Vim-style section jump" },
-  { combo: ["Esc"], label: "Close overlays", hint: "Dismiss palette / help" },
+  { combo: ["Esc"], label: "Close overlays", hint: "Dismiss help" },
 ];
 
 /**
@@ -301,8 +293,6 @@ export const VIM_GO: Record<string, string> = {
   r: "#research",
   s: "#systems",
   p: "#projects",
-  n: "#notes",
-  c: "#connect",
 };
 
 export const SOCIALS = [
@@ -353,51 +343,3 @@ export const FIELD_NOTES = [
     status: "draft",
   },
 ] as const;
-
-/**
- * Searchable command-palette items. Built from sections, projects,
- * principles, lenses, and field notes so ⌘K becomes a real index.
- */
-export type SearchItem = {
-  id: string;
-  label: string;
-  hint: string;
-  group: string;
-  keywords: string[];
-  action: "scroll" | "external";
-  target: string;
-};
-
-export const SEARCH_ITEMS: SearchItem[] = [
-  // Sections
-  { id: "sec-research", label: "Research", hint: "Dr. Arena lab work", group: "Sections", keywords: ["arena", "magnonics", "muon", "mantis", "spectromicroscopy", "xray", "spin"], action: "scroll", target: "#research" },
-  { id: "sec-systems", label: "AI & Systems", hint: "Research infrastructure", group: "Sections", keywords: ["ai", "automation", "memory", "hermes", "honcho", "nix", "dashboards"], action: "scroll", target: "#systems" },
-  { id: "sec-projects", label: "Projects", hint: "Public repos", group: "Sections", keywords: ["arbor", "magic", "yt-dlp", "peer", "discord", "repo", "github"], action: "scroll", target: "#projects" },
-  { id: "sec-principles", label: "Principles", hint: "Build, verify, simplify", group: "Sections", keywords: ["principles", "rules", "philosophy"], action: "scroll", target: "#principles" },
-  { id: "sec-notes", label: "Field Notes", hint: "Reading & research notes", group: "Sections", keywords: ["notes", "reading", "pca", "svd", "ferrimagnet", "nix", "flake", "muon"], action: "scroll", target: "#notes" },
-  { id: "sec-connect", label: "Connect", hint: "Public links", group: "Sections", keywords: ["contact", "email", "message", "reach", "github"], action: "scroll", target: "#connect" },
-  // Lenses
-  { id: "lens-magnonics", label: "Focus: Magnonics", hint: "Spin dynamics", group: "Research focus", keywords: ["magnonics", "spin", "dynamics", "nanomagnetism", "spectroscopy"], action: "scroll", target: "#research" },
-  { id: "lens-muon", label: "Focus: Muon Telescope", hint: "Detector thread", group: "Research focus", keywords: ["muon", "telescope", "detector", "cosmic"], action: "scroll", target: "#research" },
-  { id: "lens-mantis", label: "Focus: MANTiS", hint: "X-ray spectromicroscopy", group: "Research focus", keywords: ["mantis", "xray", "spectromicroscopy", "hyperspectral", "pca", "nnma", "clustering"], action: "scroll", target: "#research" },
-  // Projects
-  { id: "proj-arbor", label: "Project: Arbor", hint: "Autonomous research loop", group: "Projects", keywords: ["arbor", "python", "nix", "research loop", "simulation"], action: "external", target: "https://github.com/iankengott/Arbor" },
-  { id: "proj-magic", label: "Project: Magic", hint: "Minecraft mod", group: "Projects", keywords: ["magic", "minecraft", "mod", "game"], action: "external", target: "https://github.com/iankengott/magic" },
-  { id: "proj-ytdlp", label: "Project: yt-dlp GUI", hint: "Desktop helper", group: "Projects", keywords: ["yt-dlp", "youtube", "gui", "download", "desktop"], action: "external", target: "https://github.com/iankengott/yt-dlp-gui" },
-  { id: "proj-peer", label: "Project: PEER Discord Bot", hint: "Product-spec feedback", group: "Projects", keywords: ["peer", "discord", "bot", "ai camp", "feedback"], action: "external", target: "https://github.com/iankengott/peer-help" },
-  // Principles
-  { id: "prin-1", label: "Principle: Own the stack", hint: "Inspect, move, repair", group: "Principles", keywords: ["own", "stack", "tools", "inspect", "repair"], action: "scroll", target: "#principles" },
-  { id: "prin-2", label: "Principle: Make it useful early", hint: "Rough & working", group: "Principles", keywords: ["useful", "early", "rough", "working", "guess"], action: "scroll", target: "#principles" },
-  { id: "prin-3", label: "Principle: Stay grounded", hint: "Confirmed vs context", group: "Principles", keywords: ["grounded", "claims", "conservative", "context", "confirmed"], action: "scroll", target: "#principles" },
-  { id: "prin-4", label: "Principle: Protect the private parts", hint: "Taste without leaks", group: "Principles", keywords: ["protect", "private", "operational", "leak", "taste"], action: "scroll", target: "#principles" },
-  { id: "prin-5", label: "Principle: Automate after understanding", hint: "Know the friction first", group: "Principles", keywords: ["automate", "understanding", "friction"], action: "scroll", target: "#principles" },
-  // Field notes
-  { id: "note-pca", label: "Note: PCA vs. SVD in hyperspectral stacks", hint: "Spectroscopy", group: "Field notes", keywords: ["pca", "svd", "hyperspectral", "eigenvalues", "subspace", "cluster"], action: "scroll", target: "#notes" },
-  { id: "note-ferrimagnet", label: "Note: Why ferrimagnets beat ferromagnets", hint: "Magnonics", group: "Field notes", keywords: ["ferrimagnet", "ferromagnet", "spin waves", "comms", "damping", "sublattice"], action: "scroll", target: "#notes" },
-  { id: "note-nix", label: "Note: Nix flakes as research memory", hint: "Infrastructure", group: "Field notes", keywords: ["nix", "flake", "reproducible", "time machine", "pinned"], action: "scroll", target: "#notes" },
-  { id: "note-muon", label: "Note: Detector geometry, kept conservative", hint: "Muon telescope", group: "Field notes", keywords: ["muon", "detector", "geometry", "conservative"], action: "scroll", target: "#notes" },
-  // External links
-  { id: "ext-github", label: "GitHub profile", hint: "github.com/iankengott", group: "Links", keywords: ["github", "profile", "repos", "code"], action: "external", target: PROFILE.github },
-  { id: "ext-sessions", label: "Research sessions", hint: "Live workspace", group: "Links", keywords: ["sessions", "workspace", "live", "tailscale"], action: "external", target: PROFILE.sessions },
-  { id: "ext-usf", label: "USF lab page", hint: "Magnetic materials dynamics", group: "Links", keywords: ["usf", "lab", "arena", "university", "physics"], action: "external", target: PROFILE.usfLab },
-];

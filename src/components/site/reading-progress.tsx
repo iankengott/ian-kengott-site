@@ -101,9 +101,6 @@ function labelFor(id: string): string {
     research: "Research",
     systems: "AI & Systems",
     projects: "Projects",
-    notes: "Field Notes",
-    principles: "Principles",
-    connect: "Connect",
   };
   return map[id] ?? id;
 }

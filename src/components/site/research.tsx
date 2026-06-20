@@ -2,11 +2,10 @@
 
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, ChevronDown, ArrowUpRight } from "lucide-react";
-import { LENSES, MANTIS_SHOTS, PROFILE } from "@/lib/data";
+import { ExternalLink, ChevronDown } from "lucide-react";
+import { LENSES, PROFILE } from "@/lib/data";
 import { Reveal } from "./reveal";
 import { SectionHeading } from "./section-heading";
-import { SpectralDecomposition } from "./spectral-decomposition";
 
 export function Research() {
   return (
@@ -178,7 +177,6 @@ function FeatureGrid() {
   return (
     <div className="mt-10 grid gap-8">
       <ArenaFeature />
-      <MantisFeature />
     </div>
   );
 }
@@ -240,132 +238,6 @@ function ArenaFeature() {
             "I keep claims conservative unless they are in my notes or public sources.",
           ]}
         />
-      </div>
-    </Reveal>
-  );
-}
-
-function MantisFeature() {
-  const [active, setActive] = React.useState<string>(MANTIS_SHOTS[0].id);
-  const current = MANTIS_SHOTS.find((s) => s.id === active)!;
-
-  return (
-    <Reveal
-      as="article"
-      className="card-lift group corner-ornament relative grid overflow-hidden rounded-2xl border border-border/70 bg-card/40 lg:grid-cols-2"
-    >
-      <div className="corner-ornament-pair pointer-events-none absolute inset-0 z-20" aria-hidden>
-        <span />
-        <span />
-      </div>
-      <div className="relative z-10 order-2 flex flex-col gap-4 p-7 sm:p-9 lg:order-1">
-        <p className="eyebrow">MANTiS / X-ray Spectromicroscopy</p>
-        <h3 className="font-display text-2xl font-semibold tracking-tight">
-          Scientific tooling, packaging, and analysis workflows
-        </h3>
-        <p className="leading-relaxed text-muted-foreground">
-          My MANTiS work centers on packaging and workflow notes for a
-          multivariate x-ray spectromicroscopy analysis tool. My spectroscopy
-          notes cover the MANTiS workflow: loading hyperspectral data,
-          preprocessing, PCA/SVD, clustering, spectral maps, NNMA, peak fitting,
-          and tomography context.
-        </p>
-        <div className="flex flex-wrap gap-x-5 gap-y-2">
-          <a
-            href="https://spectromicroscopy.com/"
-            target="_blank"
-            rel="noreferrer"
-            className="link-copper inline-flex items-center gap-1 text-sm"
-          >
-            MANTiS docs <ExternalLink className="h-3 w-3" />
-          </a>
-          <a
-            href="https://docs.spectromicroscopy.com/"
-            target="_blank"
-            rel="noreferrer"
-            className="link-copper inline-flex items-center gap-1 text-sm"
-          >
-            Screenshot source <ExternalLink className="h-3 w-3" />
-          </a>
-          <a
-            href="https://github.com/iankengott/ian-kengott-site"
-            target="_blank"
-            rel="noreferrer"
-            className="link-copper inline-flex items-center gap-1 text-sm"
-          >
-            Site repo <ArrowUpRight className="h-3 w-3" />
-          </a>
-        </div>
-        <ResearchDetail
-          summary="Workflow snapshot"
-          items={[
-            "Load hyperspectral x-ray microscopy data.",
-            "Preprocess, align, and normalize spectra.",
-            "Use PCA/SVD, clustering, NNMA, maps, and peak fitting.",
-          ]}
-        />
-        {/* Procedural PCA/SVD sketch; screenshots beside it are the real MANTiS UI references. */}
-        <div className="mt-4">
-          <p className="mb-2 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground/80">
-            <span className="h-1 w-1 rounded-full bg-[var(--copper)]" />
-            procedural · PCA/SVD workflow sketch
-          </p>
-          <SpectralDecomposition />
-        </div>
-      </div>
-      <div className="relative z-10 order-1 border-b border-border/60 bg-background/40 p-5 lg:order-2 lg:border-l lg:border-b-0">
-        <div className="shot-frame relative bg-black/5">
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={current.id}
-              src={current.src}
-              alt={current.alt}
-              initial={{ opacity: 0, scale: 1.01 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="block w-full"
-              loading="lazy"
-            />
-          </AnimatePresence>
-          <p className="border-t border-border/60 bg-card/70 px-3 py-2 text-center text-xs text-muted-foreground backdrop-blur">
-            {current.caption}
-          </p>
-        </div>
-        <div
-          role="tablist"
-          aria-label="MANTiS screenshot selector"
-          className="mt-4 flex justify-center gap-2"
-        >
-          {MANTIS_SHOTS.map((shot) => {
-            const isActive = shot.id === active;
-            return (
-              <button
-                key={shot.id}
-                role="tab"
-                aria-selected={isActive}
-                onClick={() => setActive(shot.id)}
-                className={`relative rounded-full border px-4 py-1.5 text-xs font-medium transition-colors ${
-                  isActive
-                    ? "border-[var(--copper)] text-[var(--copper)]"
-                    : "border-border text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {isActive && (
-                  <motion.span
-                    layoutId="shot-pill"
-                    className="absolute inset-0 -z-10 rounded-full bg-[var(--copper)]/10"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-                {shot.label}
-              </button>
-            );
-          })}
-        </div>
-        <p className="mt-3 text-center font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground/70">
-          Screenshots reference public MANTiS documentation; the canvas is illustrative.
-        </p>
       </div>
     </Reveal>
   );

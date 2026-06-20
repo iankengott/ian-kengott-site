@@ -2,8 +2,8 @@
 
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Star, GitFork, FileCode2, GitBranch, ChevronLeft, ChevronRight, PlayCircle } from "lucide-react";
-import { PROJECTS, PROJECT_FILTERS } from "@/lib/data";
+import { ArrowUpRight, Star, GitFork, FileCode2, GitBranch, ChevronLeft, ChevronRight, PlayCircle, ExternalLink } from "lucide-react";
+import { MANTIS_SHOTS, PROJECTS, PROJECT_FILTERS } from "@/lib/data";
 import { Reveal } from "./reveal";
 import { SpotlightCard } from "./spotlight-card";
 import { SectionHeading } from "./section-heading";
@@ -207,8 +207,198 @@ export function Projects() {
         <GitHubActivity />
       </Reveal>
 
-      {/* Arbor feature panel */}
-      <Reveal as="article" delay={0.1} className="card-lift group corner-ornament relative mt-8 grid overflow-hidden rounded-2xl border border-border/70 bg-card/40 lg:grid-cols-[0.85fr_1.15fr]">
+      <FeatureCarousel arbor={arbor} />
+    </section>
+  );
+}
+
+function FeatureCarousel({ arbor }: { arbor: (typeof PROJECTS)[number] }) {
+  const [active, setActive] = React.useState<"mantis" | "arbor">("mantis");
+
+  const slides = [
+    { id: "mantis" as const, label: "MANTiS", eyebrow: "X-ray spectromicroscopy" },
+    { id: "arbor" as const, label: "Arbor", eyebrow: "Research loop media" },
+  ];
+
+  return (
+    <Reveal delay={0.1} className="mt-8">
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <p className="eyebrow mb-1">Research Feature Carousel</p>
+          <h3 className="font-display text-2xl font-semibold tracking-tight">
+            MANTiS and Arbor evidence.
+          </h3>
+        </div>
+        <div className="flex items-center gap-2" role="tablist" aria-label="Research feature carousel">
+          {slides.map((slide) => {
+            const isActive = active === slide.id;
+            return (
+              <button
+                key={slide.id}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                onClick={() => setActive(slide.id)}
+                className={`feature-tab relative rounded-full border px-4 py-2 text-xs font-medium transition-colors ${
+                  isActive
+                    ? "border-[var(--copper)] text-[var(--copper)]"
+                    : "border-border text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {isActive && (
+                  <motion.span
+                    layoutId="feature-pill"
+                    className="absolute inset-0 -z-10 rounded-full bg-[var(--copper)]/10"
+                    transition={{ type: "spring", stiffness: 360, damping: 32 }}
+                  />
+                )}
+                <span className="block">{slide.label}</span>
+                <span className="hidden font-mono text-[9px] uppercase tracking-[0.14em] opacity-70 sm:block">
+                  {slide.eyebrow}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <AnimatePresence mode="wait">
+        {active === "mantis" ? (
+          <MantisFeature key="mantis" />
+        ) : (
+          <ArborFeature key="arbor" arbor={arbor} />
+        )}
+      </AnimatePresence>
+    </Reveal>
+  );
+}
+
+function MantisFeature() {
+  const [active, setActive] = React.useState<string>(MANTIS_SHOTS[0].id);
+  const current = MANTIS_SHOTS.find((s) => s.id === active)!;
+
+  return (
+    <motion.article
+      initial={{ opacity: 0, x: 18 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -18 }}
+      transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+      className="card-lift group corner-ornament relative grid overflow-hidden rounded-2xl border border-border/70 bg-card/40 lg:grid-cols-[0.9fr_1.1fr]"
+    >
+      <div className="corner-ornament-pair pointer-events-none absolute inset-0 z-20" aria-hidden>
+        <span />
+        <span />
+      </div>
+      <div className="relative z-10 flex flex-col gap-4 p-7 sm:p-9">
+        <p className="eyebrow">MANTiS / Public UI Evidence</p>
+        <h3 className="font-display text-2xl font-semibold tracking-tight text-balance">
+          My MANTiS work centers on real x-ray spectromicroscopy workflows.
+        </h3>
+        <p className="leading-relaxed text-muted-foreground">
+          My MANTiS work is packaging and workflow documentation around the
+          multivariate x-ray spectromicroscopy toolchain: loading hyperspectral
+          data, preprocessing, PCA/SVD, clustering, spectral maps, NNMA, peak
+          fitting, and tomography context.
+        </p>
+        <div className="flex flex-wrap gap-x-5 gap-y-2">
+          <a
+            href="https://spectromicroscopy.com/"
+            target="_blank"
+            rel="noreferrer"
+            className="link-copper inline-flex items-center gap-1 text-sm"
+          >
+            MANTiS docs <ExternalLink className="h-3 w-3" />
+          </a>
+          <a
+            href="https://docs.spectromicroscopy.com/"
+            target="_blank"
+            rel="noreferrer"
+            className="link-copper inline-flex items-center gap-1 text-sm"
+          >
+            Screenshot source <ExternalLink className="h-3 w-3" />
+          </a>
+        </div>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+          {["Preprocess", "PCA / SVD", "NNMA / fitting"].map((label) => (
+            <div
+              key={label}
+              className="rounded-lg border border-border/60 bg-card/40 px-3 py-2.5"
+            >
+              <p className="font-display text-sm font-medium">{label}</p>
+              <p className="font-mono text-[10px] text-muted-foreground">
+                workflow step
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="relative z-10 border-t border-border/60 bg-background/40 p-5 sm:p-7 lg:border-l lg:border-t-0">
+        <div className="shot-frame relative bg-black/5">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={current.id}
+              src={current.src}
+              alt={current.alt}
+              initial={{ opacity: 0, scale: 1.01 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="block w-full"
+              loading="lazy"
+            />
+          </AnimatePresence>
+          <p className="border-t border-border/60 bg-card/70 px-3 py-2 text-center text-xs text-muted-foreground backdrop-blur">
+            {current.caption}
+          </p>
+        </div>
+        <div
+          role="tablist"
+          aria-label="MANTiS screenshot selector"
+          className="mt-4 flex justify-center gap-2"
+        >
+          {MANTIS_SHOTS.map((shot) => {
+            const isActive = shot.id === active;
+            return (
+              <button
+                key={shot.id}
+                role="tab"
+                aria-selected={isActive}
+                onClick={() => setActive(shot.id)}
+                className={`relative rounded-full border px-4 py-1.5 text-xs font-medium transition-colors ${
+                  isActive
+                    ? "border-[var(--copper)] text-[var(--copper)]"
+                    : "border-border text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {isActive && (
+                  <motion.span
+                    layoutId="shot-pill"
+                    className="absolute inset-0 -z-10 rounded-full bg-[var(--copper)]/10"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+                {shot.label}
+              </button>
+            );
+          })}
+        </div>
+        <p className="mt-3 text-center font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground/70">
+          Public MANTiS documentation screenshots; no synthetic simulation.
+        </p>
+      </div>
+    </motion.article>
+  );
+}
+
+function ArborFeature({ arbor }: { arbor: (typeof PROJECTS)[number] }) {
+  return (
+      <motion.article
+        initial={{ opacity: 0, x: 18 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -18 }}
+        transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+        className="card-lift group corner-ornament relative grid overflow-hidden rounded-2xl border border-border/70 bg-card/40 lg:grid-cols-[0.85fr_1.15fr]"
+      >
         <div className="corner-ornament-pair pointer-events-none absolute inset-0 z-20" aria-hidden>
           <span />
           <span />
@@ -299,7 +489,6 @@ export function Projects() {
             />
           </div>
         </div>
-      </Reveal>
-    </section>
+      </motion.article>
   );
 }

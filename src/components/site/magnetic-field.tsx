@@ -42,7 +42,7 @@ export function MagneticFieldCanvas({ className }: { className?: string }) {
         x: Math.random(),
         y: Math.random(),
         phase: Math.random() * Math.PI * 2,
-        speed: 0.0006 + Math.random() * 0.0012,
+        speed: 0.00008 + Math.random() * 0.00016,
         tone: Math.random(),
       });
     }
@@ -55,8 +55,8 @@ export function MagneticFieldCanvas({ className }: { className?: string }) {
 
     let t = 0;
     const draw = () => {
-      pointer.current.x += (pointer.current.tx - pointer.current.x) * 0.06;
-      pointer.current.y += (pointer.current.ty - pointer.current.y) * 0.06;
+      pointer.current.x += (pointer.current.tx - pointer.current.x) * 0.025;
+      pointer.current.y += (pointer.current.ty - pointer.current.y) * 0.025;
 
       ctx.clearRect(0, 0, w, h);
 
@@ -103,14 +103,14 @@ export function MagneticFieldCanvas({ className }: { className?: string }) {
 
       // Drifting particles following field hints
       for (const s of seeds) {
-        s.phase += s.speed * 1000 * 0.016;
-        const u = (s.x + Math.sin(s.phase) * 0.04) % 1;
-        const v = (s.y + Math.cos(s.phase * 0.8) * 0.04) % 1;
+        s.phase += s.speed * 1000 * 0.004;
+        const u = (s.x + Math.sin(s.phase) * 0.018) % 1;
+        const v = (s.y + Math.cos(s.phase * 0.8) * 0.018) % 1;
         const x = u * w;
         const y = v * h;
         const col = s.tone > 0.5 ? accent : jade;
         ctx.beginPath();
-        ctx.arc(x, y, 1.3 + Math.sin(t * 0.002 + s.phase) * 0.7, 0, Math.PI * 2);
+        ctx.arc(x, y, 1.3 + Math.sin(t * 0.00045 + s.phase) * 0.45, 0, Math.PI * 2);
         ctx.fillStyle = hexA(col, 0.45);
         ctx.fill();
       }
@@ -119,7 +119,7 @@ export function MagneticFieldCanvas({ className }: { className?: string }) {
       glow(ctx, poleA.x, poleA.y, accent, 0.62);
       glow(ctx, poleB.x, poleB.y, jade, 0.4);
 
-      t += 16;
+      t += 4;
       raf = requestAnimationFrame(draw);
     };
 

@@ -6,14 +6,10 @@ import { SessionStrip } from "@/components/site/session-strip";
 import { Research } from "@/components/site/research";
 import { Systems } from "@/components/site/systems";
 import { Projects } from "@/components/site/projects";
-import { FieldNotes } from "@/components/site/field-notes";
-import { Principles } from "@/components/site/principles";
-import { Connect } from "@/components/site/connect";
 import { Footer } from "@/components/site/footer";
 import { BackToTop } from "@/components/site/back-to-top";
 import { AtelierDivider } from "@/components/site/atelier-divider";
 import { ShortcutsOverlay } from "@/components/site/shortcuts-overlay";
-import { CommandPaletteProvider } from "@/components/site/command-palette";
 import { TourProvider } from "@/components/site/tour";
 import { ResumeBanner } from "@/components/site/resume-banner";
 import { ReadingProgress } from "@/components/site/reading-progress";
@@ -23,33 +19,26 @@ import { AmbientBlochSphere } from "@/components/site/ambient-bloch-sphere";
 export default function Home() {
   return (
     <TourProvider>
-      <CommandPaletteProvider>
-        <div className="relative flex min-h-screen flex-col">
-          <AmbientBlochSphere />
-          <ScrollProgress />
-          <ReadingProgress />
-          <Navbar />
-          <main className="relative z-10 flex-1">
-            <Hero />
-            <Stats />
-            <SessionStrip />
-            <Research />
-            <AtelierDivider />
-            <Systems />
-            <Projects />
-            <AtelierDivider />
-            <FieldNotes />
-            <Principles />
-            <AtelierDivider />
-            <Connect />
-          </main>
-          <Footer />
-          <BackToTop />
-          <ShortcutsOverlay />
-          <ResumeBanner />
-          <FocusMode />
-        </div>
-      </CommandPaletteProvider>
+      <div className="relative flex min-h-screen flex-col">
+        <AmbientBlochSphere />
+        <ScrollProgress />
+        <ReadingProgress />
+        <Navbar />
+        <main className="relative z-10 flex-1">
+          <Hero />
+          <Stats />
+          <SessionStrip />
+          <Research />
+          <AtelierDivider />
+          <Systems />
+          <Projects />
+        </main>
+        <Footer />
+        <BackToTop />
+        <ShortcutsOverlay />
+        <ResumeBanner />
+        <FocusMode />
+      </div>
     </TourProvider>
   );
 }

@@ -10,10 +10,9 @@ import {
   useTransform,
   AnimatePresence,
 } from "framer-motion";
-import { Menu, Command, Github } from "lucide-react";
+import { Menu, Github } from "lucide-react";
 import { NAV_LINKS, PROFILE } from "@/lib/data";
 import { ThemeToggle } from "./theme-toggle";
-import { useCommandPalette } from "./command-palette";
 import {
   Sheet,
   SheetContent,
@@ -27,7 +26,6 @@ export function Navbar() {
   const [hidden, setHidden] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
   const { scrollY, scrollYProgress } = useScroll();
-  const { setOpen: setPaletteOpen } = useCommandPalette();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [activeSection, setActiveSection] = React.useState<string>("");
   const [sectionProgress, setSectionProgress] = React.useState(0);
@@ -89,17 +87,6 @@ export function Navbar() {
     sections.forEach((s) => observer.observe(s));
     return () => observer.disconnect();
   }, []);
-
-  React.useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
-        e.preventDefault();
-        setPaletteOpen(true);
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [setPaletteOpen]);
 
   return (
     <motion.header
@@ -194,15 +181,6 @@ export function Navbar() {
 
         {/* Right cluster */}
         <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={() => setPaletteOpen(true)}
-            className="hidden items-center gap-1.5 rounded-full border border-border bg-card/50 px-2.5 py-1.5 text-xs text-muted-foreground transition-colors hover:border-[var(--copper)]/50 hover:text-foreground sm:inline-flex"
-            aria-label="Open command palette"
-          >
-            <Command className="h-3.5 w-3.5" />
-            <span className="font-mono">K</span>
-          </button>
           <a
             href={PROFILE.github}
             target="_blank"
