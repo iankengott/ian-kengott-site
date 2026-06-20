@@ -1,0 +1,6 @@
+:HL["/ian-kengott-site/_next/static/chunks/ff5cf8e3de262f36.css","style"]
+:HL["/ian-kengott-site/_next/static/chunks/a743533034de8ca4.css","style"]
+:HL["/ian-kengott-site/_next/static/media/54fc36028e2bb174-s.p.a3b6b797.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/ian-kengott-site/_next/static/media/797e433ab948586e-s.p.29207c2f.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/ian-kengott-site/_next/static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+0:{"buildId":"b3_ZMJEQVl5oOKy6Y79Gk","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true},"staleTime":300}

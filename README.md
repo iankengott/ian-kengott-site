@@ -12,7 +12,7 @@ Research-first portfolio site for Ian Kengott.
 - TypeScript
 - Tailwind CSS
 - Framer Motion
-- Prisma-backed contact route
+- Static GitHub Pages export
 
 ## Local Development
 

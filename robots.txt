@@ -1,0 +1,22 @@
+User-Agent: Googlebot
+Allow: /
+Disallow: /api/
+
+User-Agent: Bingbot
+Allow: /
+Disallow: /api/
+
+User-Agent: Twitterbot
+Allow: /
+Disallow: /api/
+
+User-Agent: facebookexternalhit
+Allow: /
+Disallow: /api/
+
+User-Agent: *
+Allow: /
+Disallow: /api/
+
+Host: https://iankengott.github.io/ian-kengott-site
+Sitemap: https://iankengott.github.io/ian-kengott-site/sitemap.xml
