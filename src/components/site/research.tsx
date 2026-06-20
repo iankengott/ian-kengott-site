@@ -192,7 +192,7 @@ function ArenaFeature() {
       </div>
       <div className="relative z-10 min-h-[260px] overflow-hidden">
         <img
-          src="/img/usf-arena-hero.jpg"
+          src="/ian-kengott-site/img/usf-arena-hero.jpg"
           alt="Darío Arena beside a Magneto-Optic Kerr effect spectroscopy setup at USF"
           className="absolute inset-0 h-full w-full object-cover"
           loading="lazy"

@@ -23,7 +23,8 @@ const fraunces = Fraunces({
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://iankengott.dev"
+    process.env.NEXT_PUBLIC_SITE_URL ??
+      "https://iankengott.github.io/ian-kengott-site"
   ),
   title: "Ian Kengott — Research Software & Magnetic Materials",
   description:

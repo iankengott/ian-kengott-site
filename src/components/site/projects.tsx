@@ -207,7 +207,7 @@ export function Projects() {
         <div className="relative z-10 border-t border-border/60 bg-background/40 p-7 lg:border-l lg:border-t-0">
           <div className="overflow-hidden rounded-xl border border-border/60 bg-card/40">
             <img
-              src="/img/arbor-framework.png"
+              src="/ian-kengott-site/img/arbor-framework.png"
               alt="Arbor framework diagram from the public Arbor repository"
               className="block w-full"
               loading="lazy"

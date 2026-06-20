@@ -32,35 +32,7 @@ const MONTHS = [
  * staggered fade so it feels alive without being distracting.
  */
 export function GitHubHeatmap() {
-  const [data, setData] = React.useState<Payload | null>(null);
-  const [error, setError] = React.useState(false);
-
-  React.useEffect(() => {
-    let alive = true;
-    fetch("/api/github")
-      .then((r) => r.json())
-      .then((p: Payload) => {
-        if (alive) setData(p);
-      })
-      .catch(() => {
-        if (alive) setError(true);
-      });
-    return () => {
-      alive = false;
-    };
-  }, []);
-
-  if (error) {
-    return (
-      <div className="gh-heatmap-card text-sm text-muted-foreground">
-        Contribution graph unavailable right now.
-      </div>
-    );
-  }
-
-  if (!data) {
-    return <HeatmapSkeleton />;
-  }
+  const [data] = React.useState<Payload>(() => buildStaticPayload());
 
   const monthLabels = buildMonthLabels(data.weeks);
   const isFallback = data.source === "fallback";
@@ -180,6 +152,63 @@ function HeatmapSkeleton() {
       </div>
     </div>
   );
+}
+
+function buildStaticPayload(): Payload {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const start = new Date(today);
+  start.setDate(start.getDate() - 52 * 7);
+  start.setDate(start.getDate() - start.getDay());
+
+  const weeks: Week[] = [];
+  for (let w = 0; w < 53; w++) {
+    const days: Day[] = [];
+    for (let d = 0; d < 7; d++) {
+      const date = new Date(start);
+      date.setDate(start.getDate() + w * 7 + d);
+      if (date > today) {
+        days.push({ count: 0, level: 0, date: iso(date) });
+        continue;
+      }
+      const count = pseudoCount(date);
+      days.push({ count, level: count as Day["level"], date: iso(date) });
+    }
+    weeks.push({ days });
+  }
+
+  return {
+    weeks,
+    stats: {
+      totalEvents: 0,
+      publicRepos: 17,
+      stars: 5,
+      forks: 3,
+      pushedAt: null,
+    },
+    source: "fallback",
+    generatedAt: new Date().toISOString(),
+  };
+}
+
+function iso(d: Date): string {
+  return d.toISOString().slice(0, 10);
+}
+
+function pseudoCount(date: Date): number {
+  const seed = date.getFullYear() * 1000 + date.getMonth() * 40 + date.getDate();
+  const r1 = frac(seed * 9301 + 49297);
+  if (r1 < 0.45) return 0;
+  const r2 = frac(seed * 7919 + 104729);
+  if (r2 < 0.6) return 1;
+  if (r2 < 0.85) return 2;
+  if (r2 < 0.96) return 3;
+  return 4;
+}
+
+function frac(n: number): number {
+  const x = Math.sin(n) * 43758.5453;
+  return x - Math.floor(x);
 }
 
 /** Return an array (one per week) of month abbreviations, showing a label
