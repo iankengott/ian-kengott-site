@@ -66,3 +66,27 @@ document.querySelectorAll(".filter-chip").forEach((button) => {
     });
   });
 });
+
+const revealTargets = document.querySelectorAll(
+  ".session-strip, .section, .feature, .card, .project, .lens-output"
+);
+
+if ("IntersectionObserver" in window) {
+  revealTargets.forEach((target) => target.classList.add("revealable"));
+
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        entry.target.classList.add("in-view");
+        revealObserver.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.14 }
+  );
+
+  revealTargets.forEach((target) => revealObserver.observe(target));
+} else {
+  revealTargets.forEach((target) => target.classList.add("in-view"));
+}
