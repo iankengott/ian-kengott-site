@@ -1,4 +1,5 @@
 :root {
+  color-scheme: light;
   --bg: #f5f7f6;
   --ink: #101714;
   --muted: #5e6b66;
@@ -9,7 +10,26 @@
   --accent-soft: #dff3ef;
   --deep: #101f1b;
   --soft: #eef7f4;
+  --solid-accent: #0b4c45;
+  --solid-accent-text: #ffffff;
   --shadow: 0 22px 70px rgba(16, 23, 20, 0.12);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #07110f;
+  --ink: #eef7f4;
+  --muted: #a8bbb4;
+  --line: #1e3832;
+  --panel: #0e1d19;
+  --accent: #68d8c9;
+  --accent-dark: #9be7da;
+  --accent-soft: #113a33;
+  --deep: #020807;
+  --soft: #102720;
+  --solid-accent: #68d8c9;
+  --solid-accent-text: #04201c;
+  --shadow: 0 24px 72px rgba(0, 0, 0, 0.34);
 }
 
 * {
@@ -23,7 +43,7 @@ html {
 body {
   margin: 0;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(245, 247, 246, 0.9)),
+    linear-gradient(180deg, color-mix(in srgb, var(--panel) 72%, transparent), color-mix(in srgb, var(--bg) 90%, transparent)),
     var(--bg);
   color: var(--ink);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -49,6 +69,35 @@ a {
   width: min(1120px, calc(100% - 40px));
   margin: 0 auto;
   padding: 24px 0;
+}
+
+.theme-toggle {
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.theme-toggle:focus-visible,
+.button:focus-visible,
+.session-strip a:focus-visible,
+.lens-chip:focus-visible,
+.filter-chip:focus-visible,
+.project:focus-visible,
+.text-link:focus-visible,
+.source-links a:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--accent) 68%, white);
+  outline-offset: 3px;
 }
 
 .brand {
@@ -223,7 +272,7 @@ h3 {
   padding: 28px;
   border: 1px solid rgba(15, 118, 110, 0.18);
   border-radius: 8px;
-  background: #fff;
+  background: var(--panel);
   box-shadow: var(--shadow);
   position: relative;
   z-index: 2;
@@ -248,11 +297,22 @@ h3 {
   min-height: 48px;
   padding: 0 20px;
   border-radius: 8px;
-  background: var(--accent-dark);
-  color: #fff;
+  background: var(--solid-accent);
+  color: var(--solid-accent-text);
   font-weight: 800;
   text-decoration: none;
   white-space: nowrap;
+}
+
+.status-dot {
+  display: inline-block;
+  width: 0.72em;
+  height: 0.72em;
+  margin-right: 8px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 7px color-mix(in srgb, var(--accent) 18%, transparent);
+  vertical-align: baseline;
 }
 
 .intro,
@@ -300,7 +360,7 @@ h3 {
 
 .systems {
   border-top: 1px solid var(--line);
-  background: linear-gradient(180deg, rgba(238, 247, 244, 0.65), rgba(245, 247, 246, 0));
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent-soft) 52%, transparent), transparent);
 }
 
 .research-summary {
@@ -334,6 +394,75 @@ h3 {
   font-weight: 800;
 }
 
+.research-lab {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.34fr) minmax(0, 1fr);
+  gap: 18px;
+  margin: 0 0 28px;
+}
+
+.lens-controls,
+.project-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.lens-controls {
+  align-content: start;
+  flex-direction: column;
+}
+
+.lens-chip,
+.filter-chip {
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.94rem;
+  font-weight: 800;
+  text-align: left;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.lens-chip:hover,
+.filter-chip:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+}
+
+.lens-chip.active,
+.filter-chip.active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+}
+
+.lens-output {
+  min-height: 180px;
+  padding: 26px;
+  border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--line));
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent-soft) 62%, transparent), transparent),
+    var(--panel);
+}
+
+.lens-output h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.55rem, 3vw, 2.2rem);
+  line-height: 1.08;
+}
+
+.lens-output p:last-child {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
 .section-head {
   display: flex;
   align-items: end;
@@ -355,6 +484,10 @@ h3 {
   gap: 16px;
 }
 
+.project-filters {
+  margin: -6px 0 18px;
+}
+
 .project {
   display: block;
   min-height: 170px;
@@ -364,6 +497,10 @@ h3 {
   background: var(--soft);
   text-decoration: none;
   transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.project[hidden] {
+  display: none;
 }
 
 .project:hover {
@@ -434,6 +571,28 @@ h3 {
   color: var(--muted);
 }
 
+.research-detail {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.research-detail summary {
+  color: var(--accent-dark);
+  cursor: pointer;
+  font-weight: 850;
+}
+
+.research-detail ul {
+  margin: 12px 0 0;
+  padding-left: 20px;
+  color: var(--muted);
+}
+
+.research-detail li + li {
+  margin-top: 6px;
+}
+
 .source-links {
   display: flex;
   flex-wrap: wrap;
@@ -491,7 +650,8 @@ h3 {
   .intro,
   .split,
   .session-strip,
-  .research-summary {
+  .research-summary,
+  .research-lab {
     grid-template-columns: 1fr;
   }
 
@@ -518,18 +678,27 @@ h3 {
   .session-strip {
     margin-top: -34px;
   }
+
+  .lens-controls {
+    flex-direction: row;
+  }
 }
 
 @media (max-width: 620px) {
   .nav {
     align-items: flex-start;
     gap: 18px;
+    flex-wrap: wrap;
   }
 
   .nav-links {
     flex-wrap: wrap;
-    justify-content: flex-end;
+    justify-content: flex-start;
     gap: 10px 16px;
+  }
+
+  .theme-toggle {
+    margin-left: auto;
   }
 
   .hero-inner {
@@ -549,6 +718,17 @@ h3 {
 
   .session-strip a {
     width: 100%;
+  }
+
+  .lens-chip,
+  .filter-chip {
+    flex: 1 1 auto;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .lens-output {
+    padding: 20px;
   }
 
   .grid,

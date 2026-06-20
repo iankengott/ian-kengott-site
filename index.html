@@ -5,7 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="My research-first site for Dr. Arena lab support, MANTiS/x-ray spectromicroscopy tooling, and supporting AI infrastructure.">
     <title>Ian Kengott</title>
+    <script>
+      const savedTheme = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.dataset.theme = savedTheme || (prefersDark ? "dark" : "light");
+    </script>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
   </head>
   <body>
     <header class="hero">
@@ -19,6 +25,9 @@
           <a href="#principles">Principles</a>
           <a href="https://github.com/iankengott">GitHub</a>
         </div>
+        <button class="theme-toggle" type="button" id="themeToggle" aria-label="Toggle dark mode" aria-pressed="false">
+          <span aria-hidden="true">Dark</span>
+        </button>
       </nav>
 
       <section class="hero-inner" id="top">
@@ -51,7 +60,7 @@
         <div>
           <p class="eyebrow">Live Research Workspace</p>
           <h2>Research sessions, notes, and running work</h2>
-          <p>Open my active session index for the research workspace and related technical runs.</p>
+          <p><span class="status-dot" aria-hidden="true"></span>Open my active session index for the research workspace and related technical runs.</p>
         </div>
         <a href="https://ian-kengott-gf63-thin-11sc.tail48a7cb.ts.net/sessions">Open sessions</a>
       </section>
@@ -79,6 +88,19 @@
           </ul>
         </div>
 
+        <div class="research-lab" aria-label="Interactive research focus">
+          <div class="lens-controls" role="tablist" aria-label="Research focus selector">
+            <button class="lens-chip active" type="button" data-lens="magnonics" role="tab" aria-selected="true">Magnonics</button>
+            <button class="lens-chip" type="button" data-lens="muon" role="tab" aria-selected="false">Muon Telescope</button>
+            <button class="lens-chip" type="button" data-lens="mantis" role="tab" aria-selected="false">MANTiS</button>
+          </div>
+          <div class="lens-output" id="lensOutput" aria-live="polite">
+            <p class="eyebrow">Selected Focus</p>
+            <h3>Magnonics and magnetic materials</h3>
+            <p>Research support around magnetic materials, spin dynamics, spectroscopy context, and workflows connected to Dr. Arena's lab.</p>
+          </div>
+        </div>
+
         <div class="feature-grid">
           <article class="feature">
             <img src="https://www.usf.edu/arts-sciences/chronicles/images/2025/february/dario-arena-moke-hero.jpg" alt="Darío Arena beside a Magneto-Optic Kerr effect spectroscopy setup at USF">
@@ -96,6 +118,14 @@
                 <a href="https://www.usf.edu/arts-sciences/departments/physics/research/labs/magnetic-materials-dynamics/team/">Lab PI source</a>
                 <a href="https://www.usf.edu/arts-sciences/chronicles/2025/innovative-research-on-ferrimagnetic-materials-earns-millions-in-funding-to-advance-communication-technologies.aspx">USF research story</a>
               </div>
+              <details class="research-detail">
+                <summary>Research context</summary>
+                <ul>
+                  <li>Magnetic materials and spin dynamics are the verified public lab context.</li>
+                  <li>My notes connect the lab context to magnonics and a muon telescope project.</li>
+                  <li>I keep claims conservative unless they are in my notes or public sources.</li>
+                </ul>
+              </details>
             </div>
           </article>
 
@@ -115,6 +145,14 @@
                 <a href="https://spectromicroscopy.com/">MANTiS docs</a>
                 <a href="https://github.com/iankengott/ian-kengott-site">Site repo</a>
               </div>
+              <details class="research-detail">
+                <summary>Workflow snapshot</summary>
+                <ul>
+                  <li>Load hyperspectral x-ray microscopy data.</li>
+                  <li>Preprocess, align, and normalize spectra.</li>
+                  <li>Use PCA/SVD, clustering, NNMA, maps, and peak fitting.</li>
+                </ul>
+              </details>
             </div>
           </article>
         </div>
@@ -152,20 +190,27 @@
           <a class="text-link" href="https://github.com/iankengott?tab=repositories">All repositories</a>
         </div>
 
+        <div class="project-filters" aria-label="Project filters">
+          <button class="filter-chip active" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter-chip" type="button" data-filter="research" aria-pressed="false">Research</button>
+          <button class="filter-chip" type="button" data-filter="tooling" aria-pressed="false">Tooling</button>
+          <button class="filter-chip" type="button" data-filter="experiments" aria-pressed="false">Experiments</button>
+        </div>
+
         <div class="project-list">
-          <a class="project" href="https://github.com/iankengott/Arbor">
+          <a class="project" href="https://github.com/iankengott/Arbor" data-category="research tooling">
             <span>Arbor</span>
             <p>Autonomous research loop work with Python packaging and reproducible experiment scaffolding.</p>
           </a>
-          <a class="project" href="https://github.com/iankengott/magic">
+          <a class="project" href="https://github.com/iankengott/magic" data-category="experiments">
             <span>Magic</span>
             <p>A Minecraft mod project and playground for game-side ideas.</p>
           </a>
-          <a class="project" href="https://github.com/iankengott/yt-dlp-gui">
+          <a class="project" href="https://github.com/iankengott/yt-dlp-gui" data-category="tooling">
             <span>yt-dlp GUI</span>
             <p>A desktop-style helper around yt-dlp for making a powerful CLI tool easier to use.</p>
           </a>
-          <a class="project" href="https://github.com/iankengott/peer-help">
+          <a class="project" href="https://github.com/iankengott/peer-help" data-category="experiments">
             <span>PEER Discord Bot</span>
             <p>An AI Camp team project for product-spec feedback through a Discord bot.</p>
           </a>

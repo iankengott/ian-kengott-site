@@ -14,6 +14,7 @@ I keep the research sections conservative: Dr. Arena lab context is grounded in 
 
 - `index.html` - site markup
 - `styles.css` - responsive styling
+- `script.js` - theme toggle and small interactions
 
 ## Local Preview
 
