@@ -365,10 +365,13 @@ h3 {
 
 .systems-head {
   max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .systems-head h2 {
   margin-bottom: 0;
+  max-width: none;
 }
 
 .systems .grid {
