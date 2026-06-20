@@ -166,6 +166,7 @@ a {
 .session-strip a:focus-visible,
 .lens-chip:focus-visible,
 .filter-chip:focus-visible,
+.shot-chip:focus-visible,
 .project:focus-visible,
 .text-link:focus-visible,
 .source-links a:focus-visible {
@@ -288,13 +289,36 @@ h3 {
 }
 
 .button.primary {
-  border-color: #fff;
-  background: #fff;
+  border-color: rgba(223, 243, 239, 0.92);
+  background: rgba(223, 243, 239, 0.92);
   color: var(--accent-dark);
 }
 
 .button:hover {
   transform: translateY(-2px);
+}
+
+.button:active,
+.theme-toggle:active,
+.brand:active,
+.session-strip a:active,
+.lens-chip:active,
+.filter-chip:active,
+.shot-chip:active,
+.project:active,
+.source-links a:active,
+.text-link:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+[data-theme="dark"] .button.primary {
+  border-color: rgba(104, 216, 201, 0.72);
+  background: rgba(104, 216, 201, 0.72);
+  color: #031613;
+}
+
+[data-theme="dark"] .session-strip a {
+  background: color-mix(in srgb, var(--solid-accent) 78%, var(--panel));
 }
 
 .button,
@@ -522,7 +546,8 @@ h3 {
 }
 
 .lens-chip,
-.filter-chip {
+.filter-chip,
+.shot-chip {
   min-height: 40px;
   padding: 0 14px;
   border: 1px solid var(--line);
@@ -534,20 +559,23 @@ h3 {
   font-size: 0.94rem;
   font-weight: 800;
   text-align: left;
-  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease, color 160ms ease;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease, color 160ms ease, box-shadow 160ms ease;
 }
 
 .lens-chip:hover,
-.filter-chip:hover {
+.filter-chip:hover,
+.shot-chip:hover {
   transform: translateY(-2px);
   border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
 }
 
 .lens-chip.active,
-.filter-chip.active {
+.filter-chip.active,
+.shot-chip.active {
   border-color: var(--accent);
   background: var(--accent-soft);
   color: var(--accent-dark);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--accent) 14%, transparent);
 }
 
 .lens-output {
@@ -558,6 +586,10 @@ h3 {
   background:
     linear-gradient(135deg, color-mix(in srgb, var(--accent-soft) 62%, transparent), transparent),
     var(--panel);
+}
+
+.lens-output.is-swapping {
+  animation: content-pop 280ms ease;
 }
 
 .lens-output h3 {
@@ -604,7 +636,7 @@ h3 {
   border-radius: 8px;
   background: var(--soft);
   text-decoration: none;
-  transition: transform 160ms ease, box-shadow 160ms ease;
+  transition: transform 160ms ease, box-shadow 160ms ease, opacity 180ms ease;
 }
 
 .project[hidden] {
@@ -629,6 +661,81 @@ h3 {
   color: var(--muted);
 }
 
+.mantis-shot.is-entering,
+.project.is-entering,
+.arbor-panel.is-entering {
+  animation: content-pop 280ms ease;
+}
+
+.arbor-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(360px, 1fr);
+  gap: 24px;
+  margin-top: 18px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: 0 12px 38px rgba(16, 23, 20, 0.06);
+}
+
+.arbor-panel[hidden] {
+  display: none;
+}
+
+.arbor-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 18px;
+}
+
+.arbor-copy h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.5rem, 3vw, 2.35rem);
+  line-height: 1.08;
+}
+
+.arbor-copy p {
+  color: var(--muted);
+}
+
+.arbor-visual {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.arbor-visual img {
+  display: block;
+  width: 100%;
+  max-height: 360px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  object-fit: contain;
+}
+
+.repo-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.repo-facts span {
+  padding: 12px;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  font-size: 0.9rem;
+}
+
+.repo-facts strong {
+  display: block;
+  color: var(--ink);
+}
+
 .feature-grid {
   display: grid;
   gap: 26px;
@@ -651,12 +758,14 @@ h3 {
 }
 
 .feature.reverse img,
-.feature.reverse .analysis-visual {
+.feature.reverse .analysis-visual,
+.feature.reverse .mantis-evidence {
   order: 2;
 }
 
 .feature img,
-.analysis-visual {
+.analysis-visual,
+.mantis-evidence {
   width: 100%;
   height: 100%;
   min-height: 320px;
@@ -764,6 +873,58 @@ h3 {
   font-weight: 850;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+}
+
+.mantis-evidence {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 12px;
+  overflow: hidden;
+  padding: 12px;
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--line));
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--accent-soft) 28%, transparent), transparent),
+    var(--soft);
+}
+
+.mantis-shot {
+  display: grid;
+  align-content: stretch;
+  gap: 10px;
+  animation: panel-slide 280ms ease;
+}
+
+.mantis-shot[hidden] {
+  display: none;
+}
+
+.mantis-shot img {
+  display: block;
+  width: 100%;
+  min-height: 0;
+  max-height: 390px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  object-fit: contain;
+}
+
+.mantis-shot p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 750;
+}
+
+.shot-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.shot-chip {
+  min-height: 36px;
+  font-size: 0.82rem;
 }
 
 .feature-copy {
@@ -897,6 +1058,28 @@ h3 {
   }
 }
 
+@keyframes panel-slide {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes content-pop {
+  0% {
+    transform: translateY(8px) scale(0.985);
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
 .principles {
   display: grid;
   gap: 18px;
@@ -940,7 +1123,8 @@ h3 {
   .split,
   .session-strip,
   .research-summary,
-  .research-lab {
+  .research-lab,
+  .arbor-panel {
     grid-template-columns: 1fr;
   }
 
@@ -961,7 +1145,8 @@ h3 {
   }
 
   .feature.reverse img,
-  .feature.reverse .analysis-visual {
+  .feature.reverse .analysis-visual,
+  .feature.reverse .mantis-evidence {
     order: 0;
   }
 
@@ -1023,6 +1208,7 @@ h3 {
 
   .grid,
   .project-list,
+  .repo-facts,
   .feature,
   .feature.reverse {
     grid-template-columns: 1fr;
@@ -1033,7 +1219,8 @@ h3 {
   }
 
   .feature img,
-  .analysis-visual {
+  .analysis-visual,
+  .mantis-evidence {
     min-height: 230px;
   }
 

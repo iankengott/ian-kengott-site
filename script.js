@@ -47,6 +47,31 @@ document.querySelectorAll(".lens-chip").forEach((button) => {
 
     lensOutput.querySelector("h3").textContent = copy.title;
     lensOutput.querySelector("p:last-child").textContent = copy.body;
+    lensOutput.classList.remove("is-swapping");
+    void lensOutput.offsetWidth;
+    lensOutput.classList.add("is-swapping");
+  });
+});
+
+document.querySelectorAll(".shot-chip").forEach((button) => {
+  button.addEventListener("click", () => {
+    const selected = button.dataset.shot;
+
+    document.querySelectorAll(".shot-chip").forEach((chip) => {
+      const isActive = chip === button;
+      chip.classList.toggle("active", isActive);
+      chip.setAttribute("aria-selected", String(isActive));
+    });
+
+    document.querySelectorAll(".mantis-shot").forEach((panel) => {
+      const isActive = panel.dataset.shotPanel === selected;
+      panel.hidden = !isActive;
+      if (isActive) {
+        panel.classList.remove("is-entering");
+        void panel.offsetWidth;
+        panel.classList.add("is-entering");
+      }
+    });
   });
 });
 
@@ -60,15 +85,21 @@ document.querySelectorAll(".filter-chip").forEach((button) => {
       chip.setAttribute("aria-pressed", String(isActive));
     });
 
-    document.querySelectorAll(".project").forEach((project) => {
+    document.querySelectorAll(".project, .arbor-panel").forEach((project) => {
       const categories = project.dataset.category?.split(" ") || [];
-      project.hidden = filter !== "all" && !categories.includes(filter);
+      const shouldShow = filter === "all" || categories.includes(filter);
+      project.hidden = !shouldShow;
+      if (shouldShow) {
+        project.classList.remove("is-entering");
+        void project.offsetWidth;
+        project.classList.add("is-entering");
+      }
     });
   });
 });
 
 const revealTargets = document.querySelectorAll(
-  ".session-strip, .section, .feature, .card, .project, .lens-output"
+  ".session-strip, .section, .feature, .card, .project, .arbor-panel, .lens-output"
 );
 
 if ("IntersectionObserver" in window) {

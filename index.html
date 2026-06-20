@@ -135,25 +135,24 @@
           </article>
 
           <article class="feature reverse">
-            <div class="analysis-visual" role="img" aria-label="Abstract spectral-analysis visualization for my MANTiS workflow">
-              <div class="analysis-grid">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="mantis-evidence" aria-label="MANTiS documentation screenshots">
+              <div class="mantis-shot active" data-shot-panel="pca">
+                <img src="https://docs.spectromicroscopy.com/images/Mantis_ss06.png" alt="MANTiS PCA tab showing eigenvalues, eigenimage, and spectrum output">
+                <p>PCA eigenvalues, image components, and spectrum output.</p>
               </div>
-              <div class="spectrum-trace">
-                <span style="--height: 42%"></span>
-                <span style="--height: 70%"></span>
-                <span style="--height: 54%"></span>
-                <span style="--height: 86%"></span>
-                <span style="--height: 62%"></span>
-                <span style="--height: 78%"></span>
-                <span style="--height: 38%"></span>
-                <span style="--height: 58%"></span>
+              <div class="mantis-shot" data-shot-panel="cluster" hidden>
+                <img src="https://docs.spectromicroscopy.com/images/Mantis_ss07.png" alt="MANTiS cluster analysis tab showing cluster maps and spectra">
+                <p>Cluster analysis with mapped regions and spectra.</p>
               </div>
-              <div class="scan-line"></div>
-              <p>MANTiS workflow</p>
+              <div class="mantis-shot" data-shot-panel="scatter" hidden>
+                <img src="https://docs.spectromicroscopy.com/images/Mantis_ss08.png" alt="MANTiS scatter plot window showing clustered principal components">
+                <p>Scatter plots for component-space inspection.</p>
+              </div>
+              <div class="shot-controls" role="tablist" aria-label="MANTiS screenshot selector">
+                <button class="shot-chip active" type="button" data-shot="pca" role="tab" aria-selected="true">PCA</button>
+                <button class="shot-chip" type="button" data-shot="cluster" role="tab" aria-selected="false">Clusters</button>
+                <button class="shot-chip" type="button" data-shot="scatter" role="tab" aria-selected="false">Scatter</button>
+              </div>
             </div>
             <div class="feature-copy">
               <p class="eyebrow">MANTiS / X-ray Spectromicroscopy</p>
@@ -167,6 +166,7 @@
               </p>
               <div class="source-links">
                 <a href="https://spectromicroscopy.com/">MANTiS docs</a>
+                <a href="https://docs.spectromicroscopy.com/">Screenshot source</a>
                 <a href="https://github.com/iankengott/ian-kengott-site">Site repo</a>
               </div>
               <details class="research-detail">
@@ -241,6 +241,32 @@
             <p>An AI Camp team project for product-spec feedback through a Discord bot.</p>
           </a>
         </div>
+
+        <article class="arbor-panel" data-category="research tooling" aria-label="Arbor repository evidence">
+          <div class="arbor-copy">
+            <p class="eyebrow">Arbor / Public Repo Evidence</p>
+            <h3>My Arbor fork is grounded in reproducible research runs.</h3>
+            <p>
+              Public GitHub metadata describes my fork as a cleaner Python
+              package layout with local setup and a Nix-based simulation scaffold
+              for reproducible experiment workflows.
+            </p>
+            <div class="source-links">
+              <a href="https://github.com/iankengott/Arbor">My Arbor fork</a>
+              <a href="https://github.com/RUC-NLPIR/Arbor">Upstream project</a>
+              <a href="https://RUC-NLPIR.github.io/Arbor/">Project page</a>
+            </div>
+          </div>
+          <div class="arbor-visual">
+            <img src="https://raw.githubusercontent.com/iankengott/Arbor/main/assets/framework.png" alt="Arbor framework diagram from the public Arbor repository">
+            <div class="repo-facts" aria-label="Public Arbor repository facts">
+              <span><strong>Python</strong> primary language</span>
+              <span><strong>Apache-2.0</strong> license</span>
+              <span><strong>Forked</strong> from RUC-NLPIR/Arbor</span>
+              <span><strong>Nix</strong> scaffold included</span>
+            </div>
+          </div>
+        </article>
       </section>
 
       <section class="section split" id="principles" aria-labelledby="principles-title">
