@@ -29,9 +29,9 @@ export default function Home() {
           <Stats />
           <SessionStrip />
           <Research />
+          <Projects />
           <AtelierDivider />
           <Systems />
-          <Projects />
         </main>
         <Footer />
         <BackToTop />

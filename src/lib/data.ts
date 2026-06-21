@@ -16,8 +16,8 @@ export const PROFILE = {
 
 export const NAV_LINKS = [
   { label: "Research", href: "#research" },
-  { label: "Systems", href: "#systems" },
   { label: "Projects", href: "#projects" },
+  { label: "Systems", href: "#systems" },
 ];
 
 /**
@@ -280,8 +280,8 @@ export const KEYBOARD_SHORTCUTS: {
   { combo: ["B"], label: "Back to top", hint: "Smooth-scroll to the hero" },
   { combo: ["F"], label: "Focus mode", hint: "Keyboard section navigation" },
   { combo: ["G", "R"], label: "Go → Research", hint: "Vim-style section jump" },
-  { combo: ["G", "S"], label: "Go → Systems", hint: "Vim-style section jump" },
   { combo: ["G", "P"], label: "Go → Projects", hint: "Vim-style section jump" },
+  { combo: ["G", "S"], label: "Go → Systems", hint: "Vim-style section jump" },
   { combo: ["Esc"], label: "Close overlays", hint: "Dismiss help" },
 ];
 

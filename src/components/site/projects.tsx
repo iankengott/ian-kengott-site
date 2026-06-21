@@ -37,7 +37,7 @@ export function Projects() {
       <Reveal className="flex flex-col gap-4 border-b border-border/60 pb-8 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="eyebrow mb-2 flex items-center gap-2">
-            <span className="sec-num">03</span>
+            <span className="sec-num">02</span>
             Selected Public Work
           </p>
           <SectionHeading id="projects" className="font-display text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
@@ -54,6 +54,8 @@ export function Projects() {
           <ArrowUpRight className="h-3.5 w-3.5" />
         </a>
       </Reveal>
+
+      <FeatureCarousel arbor={arbor} />
 
       <Reveal delay={0.05} className="mt-8 flex flex-wrap items-center justify-between gap-4">
         <div className="flex flex-wrap items-center gap-2">
@@ -206,8 +208,6 @@ export function Projects() {
       <Reveal delay={0.08}>
         <GitHubActivity />
       </Reveal>
-
-      <FeatureCarousel arbor={arbor} />
     </section>
   );
 }

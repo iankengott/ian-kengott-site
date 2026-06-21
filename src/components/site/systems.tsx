@@ -20,7 +20,7 @@ export function Systems() {
       <div className="mx-auto max-w-[1500px] px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
         <Reveal className="max-w-2xl">
           <p className="eyebrow mb-2 flex items-center gap-2">
-            <span className="sec-num">02</span>
+            <span className="sec-num">03</span>
             <Cpu className="h-3.5 w-3.5" />
             AI &amp; Technical Systems
           </p>

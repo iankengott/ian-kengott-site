@@ -45,14 +45,8 @@ function SectionHead() {
 
 function Summary() {
   return (
-    <Reveal delay={0.05} className="grid gap-8 py-10 lg:grid-cols-[1.2fr_0.8fr]">
-      <p className="text-lg leading-relaxed text-foreground/80">
-        I work with Dr. Arena's lab context, including a magnonics direction and a
-        muon telescope project. Public USF pages place Dr. Darío Arena's group in
-        magnetic materials, nanomagnetism, x-ray and neutron probes, electronic
-        structure, and spin dynamics.
-      </p>
-      <ul className="flex flex-col gap-3">
+    <Reveal delay={0.05} className="py-10">
+      <ul className="grid gap-3 md:grid-cols-3">
         {[
           "Magnonics and magnetic-materials research support",
           "Muon telescope context connected to the lab memory",
