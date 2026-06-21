@@ -2,7 +2,18 @@
 
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Star, GitFork, FileCode2, GitBranch, ChevronLeft, ChevronRight, PlayCircle, ExternalLink } from "lucide-react";
+import {
+  ArrowUpRight,
+  Star,
+  GitFork,
+  FileCode2,
+  GitBranch,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  PlayCircle,
+  ExternalLink,
+} from "lucide-react";
 import { MANTIS_SHOTS, PROJECTS, PROJECT_FILTERS } from "@/lib/data";
 import { Reveal } from "./reveal";
 import { SpotlightCard } from "./spotlight-card";
@@ -57,158 +68,225 @@ export function Projects() {
 
       <FeatureCarousel arbor={arbor} />
 
-      <Reveal delay={0.05} className="mt-8 flex flex-wrap items-center justify-between gap-4">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="mr-1 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/70">
-            Filter
-          </span>
-          {PROJECT_FILTERS.map((f) => {
-            const isActive = f.id === filter;
-            const count =
-              f.id === "all"
-                ? PROJECTS.length
-                : PROJECTS.filter((p) => p.categories.includes(f.id)).length;
-            return (
-              <button
-                key={f.id}
-                data-active={isActive}
-                aria-pressed={isActive}
-                onClick={() => setFilter(f.id)}
-                className="filter-chip relative"
-              >
-                {isActive && (
-                  <motion.span
-                    layoutId="filter-pill"
-                    className="absolute inset-0 -z-10 rounded-full bg-[var(--copper)]"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-                {f.label}
-                <span className="filter-chip-count" aria-hidden>
-                  {String(count).padStart(2, "0")}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-        <div className="flex items-center gap-2" aria-label="Project carousel controls">
-          <button
-            type="button"
-            onClick={() => scrollProjects(-1)}
-            className="carousel-button"
-            aria-label="Scroll projects left"
-          >
-            <ChevronLeft className="h-4 w-4" />
-          </button>
-          <button
-            type="button"
-            onClick={() => scrollProjects(1)}
-            className="carousel-button"
-            aria-label="Scroll projects right"
-          >
-            <ChevronRight className="h-4 w-4" />
-          </button>
-        </div>
-      </Reveal>
-
-      <motion.div
-        ref={carouselRef}
-        layout
-        className="project-carousel mt-8 flex snap-x gap-4 overflow-x-auto pb-4"
+      <CollapsiblePanel
+        eyebrow="Public Repositories"
+        title="Repository cards and filters"
+        summary={`${PROJECTS.length} selected public repos`}
+        className="mt-8"
       >
-        <AnimatePresence mode="popLayout">
-          {visible.map((p) => (
-            <motion.div
-              key={p.name}
-              layout
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.96 }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="project-slide min-w-[min(88vw,30rem)] snap-start sm:min-w-[27rem] lg:min-w-[31rem]"
-            >
-              <SpotlightCard className="h-full rounded-2xl">
-                <a
-                  href={p.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="project-card card-lift group relative flex h-full min-h-[18rem] flex-col gap-3 overflow-hidden rounded-2xl border border-border/70 bg-card/40 p-6"
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="mr-1 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/70">
+              Filter
+            </span>
+            {PROJECT_FILTERS.map((f) => {
+              const isActive = f.id === filter;
+              const count =
+                f.id === "all"
+                  ? PROJECTS.length
+                  : PROJECTS.filter((p) => p.categories.includes(f.id)).length;
+              return (
+                <button
+                  key={f.id}
+                  data-active={isActive}
+                  aria-pressed={isActive}
+                  onClick={() => setFilter(f.id)}
+                  className="filter-chip relative"
                 >
-                  <span className="project-corner" aria-hidden />
+                  {isActive && (
+                    <motion.span
+                      layoutId="filter-pill"
+                      className="absolute inset-0 -z-10 rounded-full bg-[var(--copper)]"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  {f.label}
+                  <span className="filter-chip-count" aria-hidden>
+                    {String(count).padStart(2, "0")}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+          <div className="flex items-center gap-2" aria-label="Project carousel controls">
+            <button
+              type="button"
+              onClick={() => scrollProjects(-1)}
+              className="carousel-button"
+              aria-label="Scroll projects left"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollProjects(1)}
+              className="carousel-button"
+              aria-label="Scroll projects right"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </div>
+        </div>
 
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex items-center gap-2.5">
-                      <span className="project-repo-icon" aria-hidden>
-                        <GitBranch className="h-3.5 w-3.5" />
-                      </span>
-                      <span className="font-display text-xl font-semibold tracking-tight">
-                        {p.name}
-                      </span>
+        <motion.div
+          ref={carouselRef}
+          layout
+          className="project-carousel mt-8 flex snap-x gap-4 overflow-x-auto pb-4"
+        >
+          <AnimatePresence mode="popLayout">
+            {visible.map((p) => (
+              <motion.div
+                key={p.name}
+                layout
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.96 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className="project-slide min-w-[min(88vw,30rem)] snap-start sm:min-w-[27rem] lg:min-w-[31rem]"
+              >
+                <SpotlightCard className="h-full rounded-2xl">
+                  <a
+                    href={p.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="project-card card-lift group relative flex h-full min-h-[18rem] flex-col gap-3 overflow-hidden rounded-2xl border border-border/70 bg-card/40 p-6"
+                  >
+                    <span className="project-corner" aria-hidden />
+
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex items-center gap-2.5">
+                        <span className="project-repo-icon" aria-hidden>
+                          <GitBranch className="h-3.5 w-3.5" />
+                        </span>
+                        <span className="font-display text-xl font-semibold tracking-tight">
+                          {p.name}
+                        </span>
+                      </div>
+                      <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[var(--copper)]" />
                     </div>
-                    <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[var(--copper)]" />
-                  </div>
 
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {p.blurb}
-                  </p>
+                    <p className="text-sm leading-relaxed text-muted-foreground">
+                      {p.blurb}
+                    </p>
 
-                  <div className="flex flex-wrap gap-1.5">
-                    {p.stack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="project-stack-chip rounded-md border border-border/50 bg-background/40 px-2 py-0.5 font-mono text-[10px] tracking-[0.04em] text-muted-foreground transition-colors group-hover:border-[var(--copper)]/30 group-hover:text-foreground/80"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="mt-auto flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-border/50 pt-3">
-                    <span className="inline-flex items-center gap-1.5">
-                      <span
-                        className="h-2.5 w-2.5 rounded-full ring-1 ring-inset ring-black/10"
-                        style={{ backgroundColor: p.languageColor }}
-                        aria-hidden
-                      />
-                      <span className="font-mono text-[11px] text-muted-foreground">
-                        {p.language}
-                      </span>
-                    </span>
-                    <span className="inline-flex items-center gap-1 font-mono text-[11px] text-muted-foreground/80">
-                      <Star className="h-3 w-3" />
-                      {p.stars}
-                    </span>
-                    <span className="inline-flex items-center gap-1 font-mono text-[11px] text-muted-foreground/80">
-                      <GitFork className="h-3 w-3" />
-                      {p.forks}
-                    </span>
-                    <span className="ml-auto flex flex-wrap gap-1.5">
-                      {p.categories.map((c) => (
+                    <div className="flex flex-wrap gap-1.5">
+                      {p.stack.map((tech) => (
                         <span
-                          key={c}
-                          className="rounded-full border border-border/60 bg-background/40 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.14em] text-muted-foreground"
+                          key={tech}
+                          className="project-stack-chip rounded-md border border-border/50 bg-background/40 px-2 py-0.5 font-mono text-[10px] tracking-[0.04em] text-muted-foreground transition-colors group-hover:border-[var(--copper)]/30 group-hover:text-foreground/80"
                         >
-                          {c}
+                          {tech}
                         </span>
                       ))}
-                    </span>
-                  </div>
-                </a>
-              </SpotlightCard>
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </motion.div>
+                    </div>
 
-      {/*
-        The card carousel above replaces the old vertical repo grid.
-        GitHubActivity remains a live-data panel because it is more useful full-width.
-      */}
+                    <div className="mt-auto flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-border/50 pt-3">
+                      <span className="inline-flex items-center gap-1.5">
+                        <span
+                          className="h-2.5 w-2.5 rounded-full ring-1 ring-inset ring-black/10"
+                          style={{ backgroundColor: p.languageColor }}
+                          aria-hidden
+                        />
+                        <span className="font-mono text-[11px] text-muted-foreground">
+                          {p.language}
+                        </span>
+                      </span>
+                      <span className="inline-flex items-center gap-1 font-mono text-[11px] text-muted-foreground/80">
+                        <Star className="h-3 w-3" />
+                        {p.stars}
+                      </span>
+                      <span className="inline-flex items-center gap-1 font-mono text-[11px] text-muted-foreground/80">
+                        <GitFork className="h-3 w-3" />
+                        {p.forks}
+                      </span>
+                      <span className="ml-auto flex flex-wrap gap-1.5">
+                        {p.categories.map((c) => (
+                          <span
+                            key={c}
+                            className="rounded-full border border-border/60 bg-background/40 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.14em] text-muted-foreground"
+                          >
+                            {c}
+                          </span>
+                        ))}
+                      </span>
+                    </div>
+                  </a>
+                </SpotlightCard>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+      </CollapsiblePanel>
 
-      <Reveal delay={0.08}>
+      <CollapsiblePanel
+        eyebrow="GitHub / Live Public API"
+        title="Public code activity"
+        summary="Fetched live when opened"
+        className="mt-5"
+      >
         <GitHubActivity />
-      </Reveal>
+      </CollapsiblePanel>
     </section>
+  );
+}
+
+function CollapsiblePanel({
+  eyebrow,
+  title,
+  summary,
+  className,
+  children,
+}: {
+  eyebrow: string;
+  title: string;
+  summary: string;
+  className?: string;
+  children: React.ReactNode;
+}) {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <Reveal delay={0.05} className={className}>
+      <div className="overflow-hidden rounded-2xl border border-border/70 bg-card/35">
+        <button
+          type="button"
+          onClick={() => setOpen((value) => !value)}
+          aria-expanded={open}
+          className="group flex w-full flex-col gap-4 px-5 py-5 text-left transition-colors hover:bg-card/50 sm:flex-row sm:items-center sm:justify-between sm:px-6"
+        >
+          <span>
+            <span className="eyebrow mb-1 block">{eyebrow}</span>
+            <span className="block font-display text-xl font-semibold tracking-tight">
+              {title}
+            </span>
+            <span className="mt-1 block text-sm text-muted-foreground">
+              {summary}
+            </span>
+          </span>
+          <span className="inline-flex items-center gap-2 self-start rounded-full border border-border bg-background/50 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground transition-colors group-hover:border-[var(--copper)]/50 group-hover:text-[var(--copper)] sm:self-center">
+            {open ? "Collapse" : "Expand"}
+            <ChevronDown
+              className={`h-3.5 w-3.5 transition-transform duration-300 ${
+                open ? "rotate-180" : ""
+              }`}
+            />
+          </span>
+        </button>
+        <AnimatePresence initial={false}>
+          {open && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+              className="overflow-hidden border-t border-border/60"
+            >
+              <div className="p-5 sm:p-6">{children}</div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </Reveal>
   );
 }
 
