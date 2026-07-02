@@ -3,9 +3,15 @@
 import * as React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Sparkles, MapPin } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ChevronDown, Sparkles, MapPin } from "lucide-react";
 import { MagneticFieldCanvas } from "./magnetic-field";
 import { PROFILE } from "@/lib/data";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export function Hero() {
   const heroRef = React.useRef<HTMLElement | null>(null);
@@ -136,15 +142,35 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
             className="mt-9 flex flex-wrap items-center gap-3"
           >
-            <a
-              href={PROFILE.sessions}
-              target="_blank"
-              rel="noreferrer"
-              className="group inline-flex items-center gap-2 rounded-full bg-[var(--copper)] px-5 py-2.5 text-sm font-medium text-[var(--copper-foreground)] shadow-[0_10px_40px_-12px_var(--copper)] transition-transform hover:scale-[1.02] active:scale-[0.99]"
-            >
-              Open research sessions
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </a>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button
+                  type="button"
+                  className="group inline-flex items-center gap-2 rounded-full bg-[var(--copper)] px-5 py-2.5 text-sm font-medium text-[var(--copper-foreground)] shadow-[0_10px_40px_-12px_var(--copper)] transition-transform hover:scale-[1.02] active:scale-[0.99]"
+                >
+                  Open research sessions
+                  <ChevronDown className="h-4 w-4 transition-transform group-data-[state=open]:rotate-180" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start">
+                <DropdownMenuItem asChild>
+                  <a href={PROFILE.sessions} target="_blank" rel="noreferrer">
+                    Current session
+                    <ArrowUpRight className="ml-auto h-3.5 w-3.5" />
+                  </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <a
+                    href="https://nixos.tail48a7cb.ts.net/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Agent research
+                    <ArrowUpRight className="ml-auto h-3.5 w-3.5" />
+                  </a>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
             <Link
               href="#research"
               className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur transition-colors hover:border-[var(--copper)]/50 hover:text-[var(--copper)]"
